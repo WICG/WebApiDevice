@@ -1,4 +1,4 @@
-[200~# Device Web API
+# Device Web API
 ## What is this?
 This is a proposal to add a series of device related Web APIs that are expected to be used by the applications with the highest degree of trust (i.e., trusted applications).
 ## What is the motivation?
