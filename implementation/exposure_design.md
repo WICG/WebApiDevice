@@ -1,11 +1,11 @@
 # navigator.device.*  Web API Exposure Design
 
-# Objective
+## Objective
 
 This document describes the infrastructure design of navigator.device.* namespace, and common characteristics that apply to all web APIs to be defined in it.
 
 
-# Overview
+## Overview
 
 
 
@@ -23,17 +23,17 @@ To enable a new web API in the navigator.device.* namespace, the following two l
 *   **Mojo Service:** the mojom file and its implementation build the connection between the rendering engine and component libraries according to the concrete business logic.
 
 
-# Trusted application
+## Trusted application
 
 
-## Concept
+### Concept
 
 Trusted applications mean the applications with the highest degree of trust. At the present stage, this concept is equal to the force-installed web applications configured by organization admins in the Google Admin Console.
 
 There is an initiative to extend this scope of trusted application, which will allow common Web applications to use high-trusted permissions. But the related discussion is beyond the scope of this document.
 
 
-## Verification
+### Verification
 
 The trustworthiness of an application can be verified by the classes and methods that are provided by the web application component ([folder path](https://source.chromium.org/chromium/chromium/src/+/master:chrome/browser/web_applications/)).
 
@@ -52,10 +52,10 @@ In the chrome browser, we can identify a WebAppProvider instance for the current
 2. Construct a WebApp object based on the app id, then call [WebApp::IsPolicyInstalledApp]( https://source.chromium.org/chromium/chromium/src/+/master:chrome/browser/web_applications/web_app.h;drc=35be2105aca3aae2d24f0d7b312727e9b4cadd73;l=168) method to check whether it is a trusted application.
 
 
-# Blink (Rendering Engine)
+## Blink (Rendering Engine)
 
 
-## Interface Definition
+### Interface Definition
 
 In the Blink layer, the [_navigator_](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface will introduce a new namespace **_navigator.device_**. to contain the web APIs related to information / status about the local device. All web APIs in this namespace are exposed to **trusted applications** only.
 
@@ -89,7 +89,7 @@ In the Blink layer, the [_navigator_](https://developer.mozilla.org/en-US/docs/W
 <center>DeviceService interface definition</center>
 
 
-## Trusted Context
+### Trusted Context
 
 There are few ways we can restrict this API:
 
@@ -119,7 +119,7 @@ interface DeviceAPIService {
 ```
 
 
-## Browser
+### Browser
 
 On the Chrome browser side, will have a mojo service attached to each **_RenderFrameHost_**, which will accept these calls. Since the trustiness status of the app may change over the lifetime of the RenderFrame, we have to do a permissions check upon each mojo call dynamically. 
 
@@ -157,6 +157,6 @@ From here, we can access any Chrome-specific data easily.
 Since the apis are bound to the DOMWindow(a.k.a. Javascript Frame) and DeviceAPIService is bound to the Frame, there is 1:1 correspondence between them.
 
 
-# Security considerations
+## Security considerations
 Since all the checks regarding the trustworthiness of the application are made on the browser side, there is no obvious attack surface.
 
