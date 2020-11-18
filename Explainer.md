@@ -24,11 +24,11 @@ On devices that are managed by an organization, there is a need to thoroughly se
 
 Managed Configuration API only returns meaningful values when the web application is highly-trusted by the user agent, otherwise it will fail with an exception.
 #### Interface definition
-**Promise\<object\> navigator.device.getManagedConfiguration(sequence\<DOMString\> keys)**
+**Promise\<object\> navigator.device.getManagedConfiguration(sequence\<DOMString\> keys)**  
 Returns a promise, which will be resolved into an object containing key-value pairs for each of the key from |keys| that is configured for this application.
 * This promise is rejected with a 'NotAllowedError' DOMException in case the web application is not configurable by the administrator. This is done so that applications are able to distinguish between such two cases and notify the user accordingly.
 
-**void navigator.device.addEventListener(‘managedconfigurationchange’, onChange)**
+**void navigator.device.addEventListener(‘managedconfigurationchange’, onChange)**  
 Registers an observer for any changes in managed configuration. |onChange| is called upon any configuration update.
 #### Usage example
 Suppose a device administrator owns a department store chain, which includes a fleet of devices of different purposes. Their roles and means of interaction vary. For some devices, the following configuration is set: 
