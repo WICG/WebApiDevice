@@ -1,12 +1,12 @@
 # Device Web API
 ## What is this?
-This is a proposal to add a series of device related Web APIs that are expected to be used by the applications with the highest degree of trust (i.e., trusted applications).
+This is a proposal to add a series of device related Web APIs that are expected to be used by the applications with the highest degree of trust (i.e., trusted applications). These APIs are explicitly enabled by device owners or administrators through an enterprise policy or an equivalent mechanism. Supporting the similar functionalities in unmanaged devices is a non-goal.
 ## What is the motivation?
 It’s a common requirement for web developers to provide diversified user experience or build a verified operating environment based on device-specific characteristics and configurations, especially in the field of commercial applications.
 
 Chrome browser started providing such kinds of capabilities in the form of Chrome API many years ago. Although they have been widely used in a variety of scenarios, the drawback is still apparent - Chrome API is not platform independent. In order to better fulfill the ever-increasing demand on web applications, it will be helpful to add a set of similar Web APIs to fill this gap.
 ## What are trusted applications?
-The APIs that are able to get device information are usually treated as powerful capabilities because this data belongs to [Personally Identifiable Information (PII)](https://en.wikipedia.org/wiki/Personal_data), thus exposing it to the general web would be a privacy violation. The device users usually only want to allow them in appropriate cases, and limit to a set of pre-approved web applications they understand and trust.
+The APIs that are able to get device information are usually treated as powerful capabilities because this data belongs to [Personally Identifiable Information (PII)](https://en.wikipedia.org/wiki/Personal_data), thus exposing it to the general web would be a privacy violation. Therefore, these Web APIs are only avaliable in the managed devices with consent from the device owners or administrators. They usually only want to allow them in appropriate cases, and limit to a set of pre-approved web applications they understand and trust.
 
 To reduce the potential privacy and security risks, these API should cowork with a matching authentication mechanism defined by various browsers. There should be a central management console to control which applications are trusted and which are not. Ideally the application permissions should be decided by a IT administrator role (rather than a regular user role) because individual users may expose their sensitive information unconsciously.
 
