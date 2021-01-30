@@ -1,4 +1,4 @@
-# Device Web API
+# Managed Device Web API
 ## What is this?
 This is a proposal to add a series of device related Web APIs that are expected to be used by the applications with the highest degree of trust (i.e., trusted applications). These APIs are explicitly enabled by device owners or administrators through an enterprise policy or an equivalent mechanism. Supporting the similar functionalities in unmanaged devices is a non-goal.
 ## What is the motivation?
@@ -11,12 +11,12 @@ The APIs that are able to get device information are usually treated as powerful
 To reduce the potential privacy and security risks, these API should cowork with a matching authentication mechanism defined by various browsers. There should be a central management console to control which applications are trusted and which are not. Ideally the application permissions should be decided by a IT administrator role (rather than a regular user role) because individual users may expose their sensitive information unconsciously.
 
 Take Chrome browser as an example, the status of trusted applications is given to those web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices.
-## How is Device Web API defined?
+## How is Managed Device Web API defined?
 We propose to add a new read-only property ‘_device_’ into the [_navigator_](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for trusted applications. Technically speaking, the API signatures are always exposed to any caller in Javascript, but only the applications that meet the criteria can get a meaningful result.
 
 ## Detailed description
 ### Managed Configuration
-Managed Configuration Web API is a subset of Device Web API, that provides web applications the capabilities to access external configuration set by the device administrator.
+Managed Configuration Web API is a subset of Managed Device Web API, that provides web applications the capabilities to access external configuration set by the device administrator.
 
 On devices that are managed by an organization, there is a need to thoroughly set up the environment for the web applications before use. The configuration for each device may be not exactly the same, or even changes over time. What’s more important, the device administrator is not necessarily the owner of web applications they are using, which means that it’s impossible to set up everything on the web application side. Some real use cases are as follows.
 * **Signage configuration**: an enterprise application pulls the commercial content from the management console, then demonstrates it to the customers on in-store devices.
@@ -79,7 +79,7 @@ navigator.device.addEventListener("managedconfigurationchange",
 });
 ```
 ###  Device Attributes
-Device Attributes Web API is a subset of Device Web API, that provides to web applications the capability to query device information (device ID, serial number, location, etc). Some real use cases are as follows.
+Device Attributes Web API is a subset of Managed Device Web API, that provides to web applications the capability to query device information (device ID, serial number, location, etc). Some real use cases are as follows.
 * **Virtual Desktop Infrastructure (VDI)**: an enterprise application launched on the client side needs to pull the device ID / serial number from the local device it is running on. Then the VDI provider can rely on this information to determine which user is using which device at any point in time.
 * **Context-based configuration**: an enterprise application needs to apply a specific configuration to a local device based on device attributes like location, asset ID. Then different users can have appropriate experience respectively.
 
