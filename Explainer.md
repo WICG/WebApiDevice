@@ -14,7 +14,7 @@ Take Chrome browser as an example, the status of trusted applications is given t
 ## How is Managed Device Web API defined?
 We propose to add a new read-only property ‘_device_’ into the [_navigator_](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for trusted applications.
 
-Technically speaking, the API signatures are always exposed to any caller in Javascript, but only the applications that meet the criteria can get a meaningful result. For specific browsers that provide the ability to switch users, the availability of Managed Device Web API is verified and reconfigured whenever the active user is changed to another.
+Technically speaking, the API signatures are always exposed to any caller in Javascript, but only the applications that meet the criteria can get a meaningful result. For specific browsers that provide the ability to switch users, the availability of Managed Device Web API is verified and reconfigured whenever the active user is changed to another. The same web applications cannot use these APIs any longer if they are not considered as trusted applications to the new user.
 
 ## Detailed description
 ### Managed Configuration
