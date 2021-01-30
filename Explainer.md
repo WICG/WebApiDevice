@@ -92,12 +92,11 @@ Returns a promise for the string containing the value of the device identifier o
 **Promise\<DOMString\> navigator.device.getSerialNumber()**  
 Returns a promise for the string containing the device's serial number. Please note the purpose of this API is to administrate the device (e.g. generating Certificate Sign Requests for device-wide certificates).
 * If the current user is not affiliated, the promise is rejected with a ‘NotAllowedError’ DOMException.
-* If there is no consent from the device administrator to report device information, the promise is rejected with a ‘NotAllowedError’ DOMException.
 
-**Promise\<DOMString\> navigator.device.getAssetId()**  
+**Promise\<DOMString\> navigator.device.getAnnotatedAssetId()**  
 Returns a promise for the string containing the administrator-annotated Asset Id.
-* If no Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 * If the current user is not affiliated, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.device.getAnnotatedLocation()**  
 Returns a promise for the string containing the administrator-annotated location.
@@ -127,10 +126,10 @@ function PrepareTariff() {
 }
 ```
 
-It is easy to write another similar code snippet to report the sales data including a device serial number by using **getAssetId()** method. The service side can rely on this additional information to double check whether the data comes from an expected device.
+It is easy to write another similar code snippet to report the sales data including a device serial number by using **getAnnotatedAssetId()** method. The service side can rely on this additional information to double check whether the data comes from an expected device.
 
 ```javascript
 function ReportSalesData() {
-  navigator.device.getAssetId.then(reportCallback);
+  navigator.device.getAnnotatedAssetId.then(reportCallback);
 }
 ```
