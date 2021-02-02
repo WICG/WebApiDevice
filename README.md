@@ -34,7 +34,7 @@ In the file, one can override any user policy. We will override *ManagedConfigur
 
 Here is an example of the configuration:
 
-```
+```json
 {
   "ManagedConfigurationPerOrigin": [
   {
@@ -53,7 +53,7 @@ To verify whether the value was set correctly for the policy, one can open *chro
 After an app is force installed by the administrator and the managed configuration is set, user can open Chrome DevTools Console on that page.
 
 There, the user may call the managed configuration API like this:
-```
+```javascript
 navigator.device.getManagedConfiguration(["key"]).then(console.log)
 ```
 
