@@ -15,7 +15,7 @@ Only trusted applications are available to use the Managed Web API. Please follo
 #### Setting up Chrome Policy
 In order to test out managed configuration API, some additional preparation has to be done to the device. More specifically, we have to set up a values for ManagedConfigurationPerOrigin policy.  
 
-In this instruction, we will currently describe a way of doing so for Chrome OS and Linux platforms.
+In this instruction, we will currently describe a way of doing it for Chrome OS and Linux platforms.
 
 #### Hosting configuration
 
