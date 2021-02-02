@@ -37,11 +37,11 @@ Here is an example of the configuration:
 ```json
 {
   "ManagedConfigurationPerOrigin": [
-  {
-    "origin": "https://trustedorigin.com",
-    "managed_configuration_url": "__Insert your configuration URL here__",
-    "managed_configuration_hash": "__Insert a random string here, configuration URL, for example__"
-  }
+    {
+      "origin": "https://trustedorigin.com",
+      "managed_configuration_url": "__Insert your configuration URL here__",
+      "managed_configuration_hash": "__Insert a random string here, configuration URL, for example__"
+    }
   ]
 }
 ```
