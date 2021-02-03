@@ -2,7 +2,7 @@
 ## How to test these features?
 
 ### Precondition
-#### Supported Platform
+#### Supported platform
 Currently, the Managed Device Web API is only available on Chrome OS devices (Chrome version >= 90.0.4400.8).
 #### Feature flag
 To test these new APIs, the following two feature flags need to be turned on in the Experiments page (**chrome://flags**).
@@ -13,9 +13,9 @@ Only trusted applications are available to use the Managed Web API. Please follo
 
 ### Managed Configuration
 #### Setting up Chrome Policy
-In order to test out managed configuration API, some additional preparation has to be done to the device. More specifically, we have to set up a values for ManagedConfigurationPerOrigin policy.  
+In order to test out the managed configuration API, some additional preparation has to be done to the device. More specifically, you have to set up a proper value for the ManagedConfigurationPerOrigin policy.
 
-In this instruction, we will currently describe a way of doing it for Chrome OS and Linux platforms.
+In this instruction, we introduce the approach for Chrome OS and Linux platforms.
 
 ##### Configuration file
 You can create a file */etc/opt/chrome/policies/managed/test_policy.json* on a device, which will contain the information about the managed configuration to be set.
@@ -23,11 +23,10 @@ If you are using a Chrome OS device, you may want to switch the device into a [d
 
 Since this API is still in the trial stage, the corresponding server-side UI is not yet ready. Because of that, in order to test it, you will need to host the JSON  configuration in a place, which can provide a direct link to it. For example, at [JsonKeeper](https://jsonkeeper.com/).
 
-In the *test_policy.json* file, you can override any user policy. We will override *ManagedConfigurationPerOrigin*. This policy is defined as a list of JSON dictionaries, with the following keys:
+In the *test_policy.json* file, you need to override the *ManagedConfigurationPerOrigin* policy to indicate the managed configuration to be used. It is defined as a list of JSON dictionaries, with the following keys for each:
 - __origin__ -- defines the Web App origin this configuration applies to
 - __managed_configuration_url__ -- the url, where the configuration is hosted
 - __managed_configuration_hash__ -- the unique identifier, which is usually calculated by the policy server which distinguishes you configuration from another.
-
 
 Here is an example of the configuration:
 
@@ -47,9 +46,7 @@ To verify whether the value was set correctly for the policy, you can open *chro
 
 #### Verification in the Chrome DevTools Console
 
-After an app is force installed by the administrator and the managed configuration is set, user can open Chrome DevTools Console on that page.
-
-There, the user may call the managed configuration API like this:
+After an app is force installed by the administrator and the managed configuration is set, please open the [Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console) on that page and use the following code snippet to print the configuration in the console.
 ```javascript
 navigator.device.getManagedConfiguration(["key"]).then(console.log)
 ```
@@ -57,10 +54,11 @@ navigator.device.getManagedConfiguration(["key"]).then(console.log)
 If the configuration is set properly, the value from the JSON configuration shall be printed in the console. 
 
 ### Device Attributes
+#### [Optional] Setting up the annotated Asset ID and Location
+Please follow the guide [Asset identifier during enrollment](https://support.google.com/chrome/a/answer/2657289?hl=en#allow_to_update_device_attribute) to customize the annotated Asset ID and Location during enrollment if you want to test the corresponding Web APIs.
+
 #### Verification in the Chrome DevTools Console
 The easiest way to verify the attribute results is calling these APIs in the [Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console). Take an example, the following code snippet can be used to print the current device's serial number in the console.
 ```javascript
 navigator.device.getSerialNumber(console.log);
 ```
-#### Annotated Asset ID and Location
-Please follow the guide [Asset identifier during enrollment](https://support.google.com/chrome/a/answer/2657289?hl=en#allow_to_update_device_attribute) to customize the annotated Asset ID and Location during enrollment if you want to test the corresponding Web APIs.
