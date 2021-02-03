@@ -18,15 +18,15 @@ In order to test out managed configuration API, some additional preparation has 
 In this instruction, we will currently describe a way of doing it for Chrome OS and Linux platforms.
 
 ##### Configuration file
-One can create a file */etc/opt/chrome/policies/managed/test_policy.json* on a device, which will contain the information about the managed configuration to be set.
+You can create a file */etc/opt/chrome/policies/managed/test_policy.json* on a device, which will contain the information about the managed configuration to be set.
 If you are using a Chrome OS device, you may want to switch the device into a [developer mode](https://chromium.googlesource.com/chromiumos/docs/+/HEAD/developer_mode.md#dev-mode). After that, this filesystem should be accessible.
 
-Since this API is still in the trial stage, the corresponding server-side UI is not yet ready. Because of that, in order to test it, one will need to host the JSON  configuration in a place, which can provide a direct link to it. For example, at [JsonKeeper](https://jsonkeeper.com/).
+Since this API is still in the trial stage, the corresponding server-side UI is not yet ready. Because of that, in order to test it, you will need to host the JSON  configuration in a place, which can provide a direct link to it. For example, at [JsonKeeper](https://jsonkeeper.com/).
 
-In the *test_policy.json* file, one can override any user policy. We will override *ManagedConfigurationPerOrigin*. This policy is defined as a list of JSON dictionaries, with the following keys:
+In the *test_policy.json* file, you can override any user policy. We will override *ManagedConfigurationPerOrigin*. This policy is defined as a list of JSON dictionaries, with the following keys:
 - __origin__ -- defines the Web App origin this configuration applies to
 - __managed_configuration_url__ -- the url, where the configuration is hosted
-- __managed_configuration_hash__ -- the unique identifier, which is usually calculated by the policy server which distinguishes one configuration from another.
+- __managed_configuration_hash__ -- the unique identifier, which is usually calculated by the policy server which distinguishes you configuration from another.
 
 
 Here is an example of the configuration:
@@ -43,7 +43,7 @@ Here is an example of the configuration:
 }
 ```
 
-To verify whether the value was set correctly for the policy, one can open *chrome://policy* page and search for *ManagedConfigurationPerOrigin* entry.
+To verify whether the value was set correctly for the policy, you can open *chrome://policy* page and search for *ManagedConfigurationPerOrigin* entry.
 
 #### Verification in the Chrome DevTools Console
 
