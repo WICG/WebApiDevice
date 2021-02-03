@@ -5,7 +5,7 @@
 #### Supported platform
 Currently, the Managed Device Web API is only available on Chrome OS devices (Chrome version >= 90.0.4400.8).
 #### Feature flag
-To test these new APIs, the following two feature flags need to be turned on in the Experiments page (**chrome://flags**).
+To test these new APIs, the following two feature flags need to be turned on in the Experiments page (`chrome://flags`).
 * **enable-experimental-web-platform-features**: enables experimental Web Platform features that are in development.
 * **enable-restricted-web-apis**: enables the restricted web APIs for the 'Dev Trials' stage.
 #### Trusted application
@@ -18,19 +18,19 @@ In order to test out the managed configuration API, some additional preparation 
 In this instruction, we introduce the approach for Chrome OS and Linux platforms.
 
 ##### Configuration file
-You can create a file */etc/opt/chrome/policies/managed/test_policy.json* on a device, which will contain the information about the managed configuration to be set.
+You can create a file `/etc/opt/chrome/policies/managed/test_policy.json` on a device, which will contain the information about the managed configuration to be set.
 If you are using a Chrome OS device, you may want to switch the device into a [developer mode](https://chromium.googlesource.com/chromiumos/docs/+/HEAD/developer_mode.md#dev-mode). After that, this filesystem should be accessible.
 
 Since this API is still in the trial stage, the corresponding server-side UI is not yet ready. Because of that, in order to test it, you will need to host the JSON  configuration in a place, which can provide a direct link to it. For example, at [JsonKeeper](https://jsonkeeper.com/).
 
-In the *test_policy.json* file, you need to override the *ManagedConfigurationPerOrigin* policy to indicate the managed configuration to be used. It is defined as a list of JSON dictionaries, with the following keys for each:
+In the `test_policy.json` file, you need to override the `ManagedConfigurationPerOrigin` policy to indicate the managed configuration to be used. It is defined as a list of JSON dictionaries, with the following keys for each:
 - __origin__ -- defines the Web App origin this configuration applies to
 - __managed_configuration_url__ -- the url, where the configuration is hosted
 - __managed_configuration_hash__ -- the unique identifier, which is usually calculated by the policy server which distinguishes you configuration from another.
 
 Here is an example of the configuration:
 
-```json
+```yaml
 {
   "ManagedConfigurationPerOrigin": [
     {
@@ -42,7 +42,7 @@ Here is an example of the configuration:
 }
 ```
 
-To verify whether the value was set correctly for the policy, you can open *chrome://policy* page and search for *ManagedConfigurationPerOrigin* entry.
+To verify whether the value was set correctly for the policy, you can open `chrome://policy` page and search for `ManagedConfigurationPerOrigin` entry.
 
 #### Verification in the Chrome DevTools Console
 
