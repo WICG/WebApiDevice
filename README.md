@@ -17,20 +17,17 @@ In order to test out managed configuration API, some additional preparation has 
 
 In this instruction, we will currently describe a way of doing it for Chrome OS and Linux platforms.
 
-#### Hosting configuration
-
-The configuration that is provided to the application is loaded dynamically and not sent as a part of a policy blob. What this means for testing is that the policy providing server(for Google Chrome, it is Google Admin Console) is sending a *link* to the configuration file to the browser instead of the raw configuration. This is done to cover cases where the configuration value is larger than expected. 
-
-In the future, this should not be an obstacle, as the corresponding UI will be implemented in the Admin Console. However, now, in order to test it, you may want to host your JSON configuration somewhere, where you can get a direct link to the configuration. For example, at [JsonKeeper](https://jsonkeeper.com/).
-
 ##### Configuration file
 One can create a file */etc/opt/chrome/policies/managed/test_policy.json* on a device, which will contain the information about the managed configuration to be set.
 If you are using a Chrome OS device, you may want to switch the device into a [developer mode](https://chromium.googlesource.com/chromiumos/docs/+/HEAD/developer_mode.md#dev-mode). After that, this filesystem should be accessible.
 
-In the file, one can override any user policy. We will override *ManagedConfigurationPerOrigin*. This policy is defined as a list of JSON dictionaries, with the following keys:
+Since this API is still in the trial stage, the corresponding server-side UI is not yet ready. Because of that, in order to test it, one will need to host the JSON  configuration in a place, which can provide a direct link to it. For example, at [JsonKeeper](https://jsonkeeper.com/).
+
+In the *test_policy.json* file, one can override any user policy. We will override *ManagedConfigurationPerOrigin*. This policy is defined as a list of JSON dictionaries, with the following keys:
 - __origin__ -- defines the Web App origin this configuration applies to
 - __managed_configuration_url__ -- the url, where the configuration is hosted
-- __managed_configuration_hash__ -- the unique identifier, which is usually calculated by the policy server which distinguishes one configuration from another
+- __managed_configuration_hash__ -- the unique identifier, which is usually calculated by the policy server which distinguishes one configuration from another.
+
 
 Here is an example of the configuration:
 
