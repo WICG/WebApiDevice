@@ -28,7 +28,7 @@ The API exposes data, which is configured by the device administrator per app an
 No.
 
 ### 8. What data does this specification expose to an origin? Please also document what data is identical to data exposed by other features, in the same or different contexts.
-The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website.
+The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website. This data is exposed only to the trusted applications, while for all other origins the API calls will always fail.
 
 ### 9. Does this specification enable new script execution/loading mechanisms?
 No.
