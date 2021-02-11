@@ -22,13 +22,13 @@ These APIs are required to be used in the managed devices and trusted applicatio
 No.
 
 ### 6. What information from the underlying platform, e.g. configuration data, is exposed by this specification to an origin?
-No.
+The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website.
 
 ### 7. Does this specification allow an origin access to sensors on a user’s device?
 No.
 
 ### 8. What data does this specification expose to an origin? Please also document what data is identical to data exposed by other features, in the same or different contexts.
-This question seems to be about cross-origin information exposure, which does not happen with this feature.
+The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website.
 
 ### 9. Does this specification enable new script execution/loading mechanisms?
 No.
@@ -39,14 +39,14 @@ No.
 ### 11. Does this specification allow an origin some measure of control over a user agent’s native UI?
 No.
 
-### 12. What temporary identifiers might this this specification create or expose to the web?
-No such a temporary identifier is created or exposed.
+### 12. What temporary identifiers might this  specification create or expose to the web?
+A website can use any of device attributes provided by the API to create a temporary identifier of the device (annoted asset id, annotated location, directory id) and, if explicitly allowed by the admin, a persistent identifier (serial number).
 
 ### 13. How does this specification distinguish between behavior in first-party and third-party contexts?
 It does not distinguish between them.
 
 ### 14. How does this specification work in the context of a user agent’s Private Browsing or "incognito" mode?
-No difference in general.
+These APIs are not avaiable in Private Browsing or "incognito" modes, since there a different user profile is used.
 
 ### 15. Does this specification have a "Security Considerations" and "Privacy Considerations" section?
 Not yet, as we're not at the specification stage.
