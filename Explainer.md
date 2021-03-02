@@ -10,7 +10,9 @@ The APIs that are able to get device information are usually treated as powerful
 
 To reduce the potential privacy and security risks, these API should cowork with a matching authentication mechanism defined by various browsers. There should be a central management console to control which applications are trusted and which are not. Ideally the application permissions should be decided by a IT administrator role (rather than a regular user role) because individual users may expose their sensitive information unconsciously.
 
-Take Chrome browser as an example, the status of trusted applications is given to those web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices.
+A status of *trusted* is given to a web application based on its origin, as it is de facto the boundary mechanism on the Web(permissions, local storage, requests are scoped/restricted per origin). 
+
+Take Chrome browser as an example, the status of trusted applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices.
 ## How is Managed Device Web API defined?
 We propose to add a new read-only property ‘_device_’ into the [_navigator_](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for trusted applications.
 
