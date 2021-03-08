@@ -10,7 +10,7 @@ The APIs that are able to get device information are usually treated as powerful
 
 To reduce the potential privacy and security risks, these API should cowork with a matching authentication mechanism defined by various browsers. There should be a central management console to control which applications are trusted and which are not. Ideally the application permissions should be decided by a IT administrator role (rather than a regular user role) because individual users may expose their sensitive information unconsciously.
 
-A status of *trusted* is given to a web application based on its origin, as it is de facto the boundary mechanism on the Web(permissions, local storage, requests are scoped/restricted per origin). 
+A status of trusted is given to a web application based on its origin, as it is de facto the boundary mechanism on the Web (permissions, local storage, requests are all scoped/restricted per origin). 
 
 Take Chrome browser as an example, the status of trusted applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices.
 ## How is Managed Device Web API defined?
@@ -91,25 +91,25 @@ In addition to the requirement of being called by a trusted application, Device 
 #### Interface definition
 **Promise\<DOMString\> navigator.device.getDirectoryId()**  
 Returns a promise for the string containing an inventory management system-defined value which uniquely identifies a device within an organization.
-* If the current user is not affiliated, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 
 **Promise\<DOMString\> navigator.device.getSerialNumber()**  
 Returns a promise for the string containing a manufacturer-defined value which uniquely identifies a device.
-* If the current user is not affiliated, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 
 **Promise\<DOMString\> navigator.device.getAnnotatedAssetId()**  
 Returns a promise for the string containing an administrator-defined value which uniquely identifies a device within an organization.
-* If the current user is not affiliated, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.device.getAnnotatedLocation()**  
 Returns a promise for the string containing an administrator-defined value which uniquely identifies a location within an organization.
-* If the current user is not affiliated, returns a promise rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a trusted application, this promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Location has been set by the administrator, the promise is resolved with ‘undefined’ value.
 #### Usage example
 Assuming there is a retail enterprise that relies on an online sales system. The backend service pushes different tariffs to the in-store devices based on their annotated location (country, city or sales region) in the morning, and collects sales reports in the afternoon.
 
-With the help of Device Attributes Web API, this sales application can get the device location by using **getAnnotatedLocation()** method. The operation will fail if the current user is not affiliated or the API call is triggered by a phishing application - looks similar but not the expected one.
+With the help of Device Attributes Web API, this sales application can get the device location by using **getAnnotatedLocation()** method. The operation will fail if the API call is triggered by a phishing application - looks similar but not the expected one.
 
 ```javascript
 // request sensitive data if the current environment is valid.
