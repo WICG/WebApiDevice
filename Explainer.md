@@ -14,7 +14,7 @@ A status of trusted is given to a web application based on its origin, as it is 
 
 Take Chrome browser as an example, the status of trusted applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices.
 ## How is Managed Device Web API defined?
-We propose to add a new read-only property ‘_device_’ into the [_navigator_](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for trusted applications.
+We propose to add a new read-only property ‘managed’ into the [navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for trusted applications.
 
 Technically speaking, the API signatures are always exposed to any caller in Javascript, but only the applications that meet the criteria can get a meaningful result. For specific browsers that provide the ability to switch users, the availability of Managed Device Web API is verified and reconfigured whenever the active user is changed to another. The same web applications cannot use these APIs any longer if they are not considered as trusted applications by the new user.
 
@@ -28,11 +28,11 @@ On devices that are managed by an organization, there is a need to thoroughly se
 
 Managed Configuration API only returns meaningful values when the web application is highly-trusted by the user agent, otherwise it will fail with an exception.
 #### Interface definition
-**Promise\<object\> navigator.device.getManagedConfiguration(sequence\<DOMString\> keys)**  
+**Promise\<object\> navigator.managed.getManagedConfiguration(sequence\<DOMString\> keys)**  
 Returns a promise, which will be resolved into an object containing key-value pairs for each of the key from |keys| that is configured for this application.
 * This promise is rejected with a 'NotAllowedError' DOMException in case the web application is not configurable by the administrator. This is done so that applications are able to distinguish between such two cases and notify the user accordingly.
 
-**void navigator.device.addEventListener(‘managedconfigurationchange’, onChange)**  
+**void navigator.managed.addEventListener(‘managedconfigurationchange’, onChange)**  
 Registers an observer for any changes in managed configuration. |onChange| is called upon any configuration update.
 #### Usage example
 Suppose a device administrator owns a department store chain, which includes a fleet of devices of different purposes. Their roles and means of interaction vary. For some devices, the following configuration is set: 
@@ -46,7 +46,7 @@ Suppose a device administrator owns a department store chain, which includes a f
 A client, which would like to get a configuration for a particular _key_ would call:
 
 ```javascript
-navigator.device.getManagedConfiguration(["interactable"])
+navigator.managed.getManagedConfiguration(["interactable"])
  .then(function(result) {
      // result = { “interactable” : “false” } 
      // Process the value of the key.
@@ -56,7 +56,7 @@ If the value is unset for a _key_, the result will not include that _key_.
 
 Example requesting multiple keys:
 ```javascript
-navigator.device.getManagedConfiguration(["interactable","deviceType","theme"])
+navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
  .then(function(result) {
       // result = { “interactable” : "false", 
       //            “deviceType” : "map" }   
@@ -67,7 +67,7 @@ navigator.device.getManagedConfiguration(["interactable","deviceType","theme"])
 For apps that are not _highly trusted_, the promise gets rejected.
 
 ```javascript
-navigator.device.getManagedConfiguration(["interactable","deviceType","theme"])
+navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
  .then(onSuccess, function(error) { 
       console.log(error.name); // Will print "NotAllowedArror");
 });
@@ -76,7 +76,7 @@ navigator.device.getManagedConfiguration(["interactable","deviceType","theme"])
 Users can track updates in managed configuration by calling addEventListener method:
 
 ```javascript
-navigator.device.addEventListener("managedconfigurationchange", 
+navigator.managed.addEventListener("managedconfigurationchange", 
  function() { 
      // Whenever something changes in the configuration, this method is                
      // called.
@@ -89,26 +89,26 @@ Device Attributes Web API is a subset of Managed Device Web API, that provides t
 
 In addition to the requirement of being called by a trusted application, Device Attributes Web API usually asks for more consents from the device users or administrators before they are able to return meaningful results. Please check the rules in the definition of each.
 #### Interface definition
-**Promise\<DOMString\> navigator.device.getAnnotatedAssetId()**
+**Promise\<DOMString\> navigator.managed.getAnnotatedAssetId()**
 Returns a promise for the string containing an administrator-defined value which uniquely identifies a device within an organization.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
-**Promise\<DOMString\> navigator.device.getAnnotatedLocation()**
+**Promise\<DOMString\> navigator.managed.getAnnotatedLocation()**
 Returns a promise for the string containing an administrator-defined value which uniquely identifies a location within an organization.
 * If this API is not called by a trusted application, this promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Location has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
-**Promise\<DOMString\> navigator.device.getDirectoryId()**
+**Promise\<DOMString\> navigator.managed.getDirectoryId()**
 Returns a promise for the string containing an inventory management system-defined value which uniquely identifies a device within an organization.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 
-**Promise\<DOMString\> navigator.device.getHostname()**
+**Promise\<DOMString\> navigator.managed.getHostname()**
 Returns a promise for the string containing an administrator-defined value which is used as the device hostname during DHCP request.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
-**Promise\<DOMString\> navigator.device.getSerialNumber()**
+**Promise\<DOMString\> navigator.managed.getSerialNumber()**
 Returns a promise for the string containing a manufacturer-defined value which uniquely identifies a device.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 #### Usage example
