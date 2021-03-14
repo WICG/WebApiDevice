@@ -48,7 +48,7 @@ To verify whether the value was set correctly for the policy, you can open `chro
 
 After an app is force installed by the administrator and the managed configuration is set, please open the [Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console) on that page and use the following code snippet to print the configuration in the console.
 ```javascript
-navigator.device.getManagedConfiguration(["key"]).then(console.log)
+navigator.managed.getManagedConfiguration(["key"]).then(console.log)
 ```
 
 If the configuration is set properly, the value from the JSON configuration shall be printed in the console. 
@@ -60,5 +60,5 @@ Please follow the guide [Asset identifier during enrollment](https://support.goo
 #### Verification in the Chrome DevTools Console
 The easiest way to verify the attribute results is calling these APIs in the [Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console). Take an example, the following code snippet can be used to print the current device's serial number in the console.
 ```javascript
-navigator.device.getSerialNumber(console.log);
+navigator.managed.getSerialNumber(console.log);
 ```
