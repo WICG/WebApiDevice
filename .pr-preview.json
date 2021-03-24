@@ -1,0 +1,7 @@
+{
+    "src_file": "managed_config/index.bs",
+    "type": "bikeshed",
+    "params": {
+        "force": 1
+    }
+}
