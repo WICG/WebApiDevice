@@ -19,7 +19,7 @@ This is discussed in [What are trusted applications?](https://github.com/WICG/We
 These APIs are required to be used in the managed devices and trusted applications. The device administrators are responsible to understand the potential risk and control the accessibility when the APIs are allowed to be used.
 
 ### 5. Does this specification introduce new state for an origin that persists across browsing sessions?
-No.
+It does, but this state is not controllable by the origin itself (managed configuration).
 
 ### 6. What information from the underlying platform, e.g. configuration data, is exposed by this specification to an origin?
 The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website.
@@ -28,7 +28,8 @@ The API exposes data, which is configured by the device administrator per app an
 No.
 
 ### 8. What data does this specification expose to an origin? Please also document what data is identical to data exposed by other features, in the same or different contexts.
-The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website. This data is exposed only to the trusted applications, while for all other origins the API calls will always fail.
+The API exposes data, which is configured by the device administrator per app and per device along with a serial number of the device which is running the website. 
+For non-managed and anonymous contexts, the API calls always fail.
 
 ### 9. Does this specification enable new script execution/loading mechanisms?
 No.
@@ -46,10 +47,10 @@ A website can use any of device attributes provided by the API to create a tempo
 It does not distinguish between them.
 
 ### 14. How does this specification work in the context of a user agent’s Private Browsing or "incognito" mode?
-These APIs are not avaiable in Private Browsing or "incognito" modes, since there a different user profile is used.
+These APIs are not avaiable in Private Browsing or "incognito" mode, since there a different user profile is used.
 
 ### 15. Does this specification have a "Security Considerations" and "Privacy Considerations" section?
-Not yet, as we're not at the specification stage.
+It does.
 
 ### 16. Does this specification allow downgrading default security characteristics?
 No.
