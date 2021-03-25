@@ -2,16 +2,21 @@
 Title: Managed Configuration API
 Shortname: managed-configuration
 Level: 1
-Editor: Anatoliy Potapchuk (Google) apotapchuk@chromium.org
-Status: w3c/WD
+Editor: Anatoliy Potapchuk https://www.w3.org/users/130190, Google LLC https://www.google.com, apotapchuk@google.com
+Status: w3c/CG-DRAFT
 Issue Tracking: Github https://github.com/WICG/WebApiDevice/issues
-URL: http://example.com/url-this-spec-will-live-at
+URL: https://wicg.github.io/WebApiDevice/managed_config
 Abstract: This document defines a web platform API that enables developers to access administrator-set configuration on managed devices. Such API invaluable for such use cases as digital signage and device-centric personalization.
-TR: 
+Repository: https://github.com/WICG/WebApiDevice
+Group: wicg
 </pre>
 
 <pre class=link-defaults>
 spec:html; type:interface; text:Navigator
+spec:url; type:dfn; text:origin
+spec:html; type:dfn; for:/; text:global object
+spec:webidl; type:dfn; text:resolve
+spec:webidl; type:dfn; text:record
 </pre>
 
 <pre class="anchors">
@@ -22,7 +27,7 @@ spec:html; type:interface; text:Navigator
 
 ## Managed devices ## {#managed-devices}
 
-The API is presumed to be used on devices, which are not fully controlled by the end user, but rather by an external entity, the device administrator. Device administrators are given the power to fully control the managed device.
+The API is presumed to be used on devices which are not fully controlled by the end user but rather by an external entity, the device administrator. Device administrators are given the power to fully control the managed device.
 
 ## Managed configuration ## {#managed-configuration}
 
@@ -32,7 +37,10 @@ Note that this does not apply to anonymous contexts, where the observed state is
 
 ## <dfn dfn>Data model</dfn> ## {#data-model-section}
 
-We can assume without loss of generality that managed configuration is stored in a two-level key-value store. The first level of this store corresponds to configured origins, while the second corresponds to per-origin configuration string keys.
+We can assume without loss of generality that managed configuration is stored in a two-level key-value store.
+
+[=Data model=] is declared as a [=map=] [=map=] where each [=key=] is a configured [=origin=] and the value is a <xmp>record<DOMString, object></xmp> with items corresponding to per-origin configuration keys and their values.
+
 ## Data integrity verification ## {#data-integrity-verification}
 
 There is no managed configuration verification mechanism defined in the specification, which implies that the website should assume that the configuration could be tampered with, stolen or be replayed on a non-managed device. 
@@ -62,28 +70,38 @@ When getting, the managed attribute always returns the same instance of the {{Na
   Exposed=Window
 ] interface NavigatorManagedData : EventTarget {
   // Managed Configuration API.
-  Promise<object> getManagedConfiguration(sequence<DOMString> keys);
+  Promise<record<DOMString, object>> getManagedConfiguration(sequence<DOMString> keys);
   attribute EventHandler onmanagedconfigurationchange;
 };
 </xmp>
 
+Methods on this interface typically complete asynchronously, queuing work on the <dfn>managed data task source</dfn>.
+
 ## {{getManagedConfiguration()}} method ## {#getmanagedconfiguration-method}
 
-The {{getManagedConfiguration()}} method steps are:
-1. Let |promise| be a new promise.
-1. Run the following steps in parallel:
-    1. Try requesting managed configuration by sending {{keys}} to the [=data model=].
-    1. If the application is not managed, reject |promise| with a {{NotAllowedError}} DOMException.
-    1. Create an empty javascript |object|.
-    1. For each of the keys that had an associated  configuration in the [=data model=], add an attribute to the |object|.
-    1. Resolve |promise| with |object|.
-1. Return |promise|.
+  The {{getManagedConfiguration()}} method steps are:
+  1. Let |promise| be [=a new promise=].
+  1. Run the following steps in parallel:
+      1. Let |map| be the [=data model=] configured by the device administrator.
+      1. Let |origin| be [=global object=]'s [=origin=].
+      
+          NOTE: Third-party contexts have access to the same configuration values as if they were the top-level document.
+      1. If there is no entry in the |map| with key equal to |origin|, reject |promise| with a {{NotAllowedError}} DOMException.
+      1. Create an empty IDL [=record=] |record|.
+      1. For each |key| of the {{keys}}:
+          1. If there is a record with key |key| in |map|[|origin|]:
+              1. Add an attribute to |record| with |key| as the key and |map|[|origin|][|key|] as the value.
+      1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] promise with |record|.
+  1. Return |promise|.
 
 ## {{onmanagedconfigurationchange}} attribute ## {#onmanagedconfigurationchange-attribute}
 
 {{onmanagedconfigurationchange}} is an event handler IDL attribute for the |managedconfigurationchange| event type.
 
-When any of the configuration values under the origin-level key changes for the current origin, |managedconfigurationchange| event is fired with no value associated with it.
+When any of the configuration values under the origin-level key changes for an |origin|, run the following steps:
+1. For each instance |data| of NavigatorManagedData:
+    1. Let |document| be |data|'s [=relevant global object=]'s associated [=Document=].
+    1. If |document| is fully active and |document|'s [=origin=] is equal to |origin|, [=fire an event=] named |managedconfigurationchange| at |data| with no value associated with it.
 
 
 # Security considerations # {#security-considerations}
