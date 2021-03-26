@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version b94c7e755, updated Fri Feb 19 16:28:59 2021 -0800" name="generator">
   <link href="https://wicg.github.io/WebApiDevice/managed_config" rel="canonical">
-  <meta content="a4dbfaf6a7e9202afcb3439fad1e6d77016c9cb5" name="document-revision">
+  <meta content="071d10f9cc020f66fca57ecdaca2633ad75b7b2a" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -610,7 +610,11 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li><a href="#data-model-section"><span class="secno">1.3</span> <span class="content"><span>Data model</span></span></a>
       <li><a href="#data-integrity-verification"><span class="secno">1.4</span> <span class="content">Data integrity verification</span></a>
      </ol>
-    <li><a href="#navigator-extensions"><span class="secno">2</span> <span class="content">Extensions to the <code class="idl"><span>Navigator</span></code> interface</span></a>
+    <li>
+     <a href="#navigator-extensions"><span class="secno">2</span> <span class="content">Extensions to the <code class="idl"><span>Navigator</span></code> interface</span></a>
+     <ol class="toc">
+      <li><a href="#managed-attribute"><span class="secno">2.1</span> <span class="content"><code class="idl"><span>managed</span></code> attribute</span></a>
+     </ol>
     <li>
      <a href="#navigatormanageddata-interface"><span class="secno">3</span> <span class="content"><code class="idl"><span>NavigatorManagedData</span></code> interface</span></a>
      <ol class="toc">
@@ -663,21 +667,21 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <c- b>readonly</c-> <c- b>attribute</c-> <a data-link-type="idl-name" href="#navigatormanageddata" id="ref-for-navigatormanageddata"><c- n>NavigatorManagedData</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="Navigator" data-dfn-type="attribute" data-export data-readonly data-type="NavigatorManagedData" id="dom-navigator-managed"><code><c- g>managed</c-></code></dfn>;
 };
 </pre>
-   <p><code class="idl"><a data-link-type="idl" href="#dom-navigator-managed" id="ref-for-dom-navigator-managed">managed</a></code> attribute
-When getting, the managed attribute always returns the same instance of the <code class="idl"><a data-link-type="idl" href="#navigatormanageddata" id="ref-for-navigatormanageddata①">NavigatorManagedData</a></code> object.</p>
+   <h3 class="heading settled" data-level="2.1" id="managed-attribute"><span class="secno">2.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-navigator-managed" id="ref-for-dom-navigator-managed">managed</a></code> attribute</span><a class="self-link" href="#managed-attribute"></a></h3>
+    When getting, the <code class="idl"><a data-link-type="idl" href="#dom-navigator-managed" id="ref-for-dom-navigator-managed①">managed</a></code> attribute always returns the same instance of the <code class="idl"><a data-link-type="idl" href="#navigatormanageddata" id="ref-for-navigatormanageddata①">NavigatorManagedData</a></code> object. 
    <h2 class="heading settled" data-level="3" id="navigatormanageddata-interface"><span class="secno">3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#navigatormanageddata" id="ref-for-navigatormanageddata②">NavigatorManagedData</a></code> interface</span><a class="self-link" href="#navigatormanageddata-interface"></a></h2>
 <pre class="idl highlight def">[
   <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#SecureContext" id="ref-for-SecureContext②"><c- g>SecureContext</c-></a>,
   <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed" id="ref-for-Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->
 ] <c- b>interface</c-> <dfn class="dfn-paneled idl-code" data-dfn-type="interface" data-export id="navigatormanageddata"><code><c- g>NavigatorManagedData</c-></code></dfn> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget" id="ref-for-eventtarget"><c- n>EventTarget</c-></a> {
   // Managed Configuration API.
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-record" id="ref-for-idl-record"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a>>> <dfn class="dfn-paneled idl-code" data-dfn-for="NavigatorManagedData" data-dfn-type="method" data-export data-lt="getManagedConfiguration(keys)" id="dom-navigatormanageddata-getmanagedconfiguration"><code><c- g>getManagedConfiguration</c-></code></dfn>(<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a>> <dfn class="idl-code" data-dfn-for="NavigatorManagedData/getManagedConfiguration(keys)" data-dfn-type="argument" data-export id="dom-navigatormanageddata-getmanagedconfiguration-keys-keys"><code><c- g>keys</c-></code><a class="self-link" href="#dom-navigatormanageddata-getmanagedconfiguration-keys-keys"></a></dfn>);
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise" id="ref-for-idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-record" id="ref-for-idl-record"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString"><c- b>DOMString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object" id="ref-for-idl-object"><c- b>object</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-navigatormanageddata-getmanagedconfiguration" id="ref-for-dom-navigatormanageddata-getmanagedconfiguration"><c- g>getManagedConfiguration</c-></a>(<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence" id="ref-for-idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString" id="ref-for-idl-DOMString①"><c- b>DOMString</c-></a>> <dfn class="idl-code" data-dfn-for="NavigatorManagedData/getManagedConfiguration(keys)" data-dfn-type="argument" data-export id="dom-navigatormanageddata-getmanagedconfiguration-keys-keys"><code><c- g>keys</c-></code><a class="self-link" href="#dom-navigatormanageddata-getmanagedconfiguration-keys-keys"></a></dfn>);
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler" id="ref-for-eventhandler"><c- n>EventHandler</c-></a> <dfn class="dfn-paneled idl-code" data-dfn-for="NavigatorManagedData" data-dfn-type="attribute" data-export data-type="EventHandler" id="dom-navigatormanageddata-onmanagedconfigurationchange"><code><c- g>onmanagedconfigurationchange</c-></code></dfn>;
 };
 </pre>
    <p>Methods on this interface typically complete asynchronously, queuing work on the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="managed-data-task-source">managed data task source</dfn>.</p>
-   <h3 class="heading settled" data-level="3.1" id="getmanagedconfiguration-method"><span class="secno">3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-navigatormanageddata-getmanagedconfiguration" id="ref-for-dom-navigatormanageddata-getmanagedconfiguration">getManagedConfiguration()</a></code> method</span><a class="self-link" href="#getmanagedconfiguration-method"></a></h3>
-   <p>The getManagedConfiguration(<var>keys</var>) method steps are:</p>
+   <h3 class="heading settled" data-level="3.1" id="getmanagedconfiguration-method"><span class="secno">3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-navigatormanageddata-getmanagedconfiguration" id="ref-for-dom-navigatormanageddata-getmanagedconfiguration①">getManagedConfiguration()</a></code> method</span><a class="self-link" href="#getmanagedconfiguration-method"></a></h3>
+   <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="NavigatorManagedData" data-dfn-type="method" data-export id="dom-navigatormanageddata-getmanagedconfiguration"><code>getManagedConfiguration(<var>keys</var>)</code></dfn> method steps are:</p>
    <ol>
     <li data-md>
      <p>Let <var>promise</var> be <a data-link-type="dfn" href="https://heycam.github.io/webidl/#a-new-promise" id="ref-for-a-new-promise">a new promise</a>.</p>
@@ -766,7 +770,7 @@ When getting, the managed attribute always returns the same instance of the <cod
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
    <li><a href="#data-model">Data model</a><span>, in §1.3</span>
-   <li><a href="#dom-navigatormanageddata-getmanagedconfiguration">getManagedConfiguration(keys)</a><span>, in §3</span>
+   <li><a href="#dom-navigatormanageddata-getmanagedconfiguration">getManagedConfiguration(keys)</a><span>, in §3.1</span>
    <li><a href="#dom-navigator-managed">managed</a><span>, in §2</span>
    <li><a href="#managedconfigurationchange">managedconfigurationchange</a><span>, in §3.2</span>
    <li><a href="#managed-data-task-source">managed data task source</a><span>, in §3</span>
@@ -998,7 +1002,7 @@ When getting, the managed attribute always returns the same instance of the <cod
   <a class="idl-code" data-link-type="extended-attribute" href="https://heycam.github.io/webidl/#Exposed"><c- g>Exposed</c-></a>=<c- n>Window</c->
 ] <c- b>interface</c-> <a href="#navigatormanageddata"><code><c- g>NavigatorManagedData</c-></code></a> : <a data-link-type="idl-name" href="https://dom.spec.whatwg.org/#eventtarget"><c- n>EventTarget</c-></a> {
   // Managed Configuration API.
-  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-record"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object"><c- b>object</c-></a>>> <a href="#dom-navigatormanageddata-getmanagedconfiguration"><code><c- g>getManagedConfiguration</c-></code></a>(<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a>> <a href="#dom-navigatormanageddata-getmanagedconfiguration-keys-keys"><code><c- g>keys</c-></code></a>);
+  <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-promise"><c- b>Promise</c-></a>&lt;<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-record"><c- b>record</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a>, <a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-object"><c- b>object</c-></a>>> <a class="idl-code" data-link-type="method" href="#dom-navigatormanageddata-getmanagedconfiguration"><c- g>getManagedConfiguration</c-></a>(<a data-link-type="dfn" href="https://heycam.github.io/webidl/#idl-sequence"><c- b>sequence</c-></a>&lt;<a class="idl-code" data-link-type="interface" href="https://heycam.github.io/webidl/#idl-DOMString"><c- b>DOMString</c-></a>> <a href="#dom-navigatormanageddata-getmanagedconfiguration-keys-keys"><code><c- g>keys</c-></code></a>);
   <c- b>attribute</c-> <a data-link-type="idl-name" href="https://html.spec.whatwg.org/multipage/webappapis.html#eventhandler"><c- n>EventHandler</c-></a> <a data-type="EventHandler" href="#dom-navigatormanageddata-onmanagedconfigurationchange"><code><c- g>onmanagedconfigurationchange</c-></code></a>;
 };
 
@@ -1013,21 +1017,16 @@ When getting, the managed attribute always returns the same instance of the <cod
   <aside class="dfn-panel" data-for="dom-navigator-managed">
    <b><a href="#dom-navigator-managed">#dom-navigator-managed</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-dom-navigator-managed">2. Extensions to the Navigator interface</a>
+    <li><a href="#ref-for-dom-navigator-managed">2.1. managed attribute</a> <a href="#ref-for-dom-navigator-managed①">(2)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="navigatormanageddata">
    <b><a href="#navigatormanageddata">#navigatormanageddata</a></b><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-navigatormanageddata">2. Extensions to the Navigator interface</a> <a href="#ref-for-navigatormanageddata①">(2)</a>
+    <li><a href="#ref-for-navigatormanageddata">2. Extensions to the Navigator interface</a>
+    <li><a href="#ref-for-navigatormanageddata①">2.1. managed attribute</a>
     <li><a href="#ref-for-navigatormanageddata②">3. NavigatorManagedData interface</a>
     <li><a href="#ref-for-navigatormanageddata③">3.2. onmanagedconfigurationchange attribute</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="dom-navigatormanageddata-getmanagedconfiguration">
-   <b><a href="#dom-navigatormanageddata-getmanagedconfiguration">#dom-navigatormanageddata-getmanagedconfiguration</a></b><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-dom-navigatormanageddata-getmanagedconfiguration">3.1. getManagedConfiguration() method</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="dom-navigatormanageddata-onmanagedconfigurationchange">
@@ -1040,6 +1039,13 @@ When getting, the managed attribute always returns the same instance of the <cod
    <b><a href="#managed-data-task-source">#managed-data-task-source</a></b><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-managed-data-task-source">3.1. getManagedConfiguration() method</a>
+   </ul>
+  </aside>
+  <aside class="dfn-panel" data-for="dom-navigatormanageddata-getmanagedconfiguration">
+   <b><a href="#dom-navigatormanageddata-getmanagedconfiguration">#dom-navigatormanageddata-getmanagedconfiguration</a></b><b>Referenced in:</b>
+   <ul>
+    <li><a href="#ref-for-dom-navigatormanageddata-getmanagedconfiguration">3. NavigatorManagedData interface</a>
+    <li><a href="#ref-for-dom-navigatormanageddata-getmanagedconfiguration①">3.1. getManagedConfiguration() method</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="managedconfigurationchange">

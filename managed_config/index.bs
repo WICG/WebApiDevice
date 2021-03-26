@@ -58,8 +58,8 @@ Alternative security measures should be put in place by the website itself.
 </xmp>
 
 
-{{managed}} attribute
-When getting, the managed attribute always returns the same instance of the {{NavigatorManagedData}} object.
+## {{managed}} attribute ## {#managed-attribute}
+When getting, the {{managed}} attribute always returns the same instance of the {{NavigatorManagedData}} object.
 
 # {{NavigatorManagedData}} interface # {#navigatormanageddata-interface}
 
@@ -78,7 +78,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
 
 ## {{getManagedConfiguration()}} method ## {#getmanagedconfiguration-method}
 
-  The getManagedConfiguration(|keys|) method steps are:
+  The <dfn method for="NavigatorManagedData">getManagedConfiguration(|keys|)</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
   1. Run the following steps in parallel:
       1. Let |map| be the [=data model=] configured by the device administrator.
