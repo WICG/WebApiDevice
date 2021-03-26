@@ -2,9 +2,8 @@
 Title: Managed Configuration API
 Shortname: managed-configuration
 Level: 1
-Editor: Anatoliy Potapchuk https://www.w3.org/users/130190, Google LLC https://www.google.com, apotapchuk@google.com
+Editor: Anatoliy Potapchuk 130190, Google LLC https://www.google.com, apotapchuk@google.com
 Status: w3c/CG-DRAFT
-Issue Tracking: Github https://github.com/WICG/WebApiDevice/issues
 URL: https://wicg.github.io/WebApiDevice/managed_config
 Abstract: This document defines a web platform API that enables developers to access administrator-set configuration on managed devices. Such API invaluable for such use cases as digital signage and device-centric personalization.
 Repository: https://github.com/WICG/WebApiDevice
@@ -39,7 +38,7 @@ Note that this does not apply to anonymous contexts, where the observed state is
 
 We can assume without loss of generality that managed configuration is stored in a two-level key-value store.
 
-[=Data model=] is declared as a [=map=] [=map=] where each [=key=] is a configured [=origin=] and the value is a <xmp>record<DOMString, object></xmp> with items corresponding to per-origin configuration keys and their values.
+[=Data model=] is declared as a [=map=] where each [=key=] is a configured [=origin=] and the value is a <xmp><code>record<DOMString, object></code></xmp> with items corresponding to per-origin configuration keys and their values.
 
 ## Data integrity verification ## {#data-integrity-verification}
 
@@ -79,34 +78,32 @@ Methods on this interface typically complete asynchronously, queuing work on the
 
 ## {{getManagedConfiguration()}} method ## {#getmanagedconfiguration-method}
 
-  The {{getManagedConfiguration()}} method steps are:
+  The getManagedConfiguration(|keys|) method steps are:
   1. Let |promise| be [=a new promise=].
   1. Run the following steps in parallel:
       1. Let |map| be the [=data model=] configured by the device administrator.
-      1. Let |origin| be [=global object=]'s [=origin=].
+      1. Let |origin| be the [=relevant global object=] of [=this=]'s associated {{Document}}'s [=origin=].
       
           NOTE: Third-party contexts have access to the same configuration values as if they were the top-level document.
       1. If there is no entry in the |map| with key equal to |origin|, reject |promise| with a {{NotAllowedError}} DOMException.
       1. Create an empty IDL [=record=] |record|.
-      1. For each |key| of the {{keys}}:
-          1. If there is a record with key |key| in |map|[|origin|]:
-              1. Add an attribute to |record| with |key| as the key and |map|[|origin|][|key|] as the value.
+      1. For each |key| of the |keys|, if there is a record with key |key| in map[origin], add an attribute to record with |key| as the key and |map|[|origin|][|key|] as the value.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] promise with |record|.
   1. Return |promise|.
 
 ## {{onmanagedconfigurationchange}} attribute ## {#onmanagedconfigurationchange-attribute}
 
-{{onmanagedconfigurationchange}} is an event handler IDL attribute for the |managedconfigurationchange| event type.
+{{onmanagedconfigurationchange}} is an event handler IDL attribute for the <code><dfn>managedconfigurationchange</dfn></code> event type.
 
-When any of the configuration values under the origin-level key changes for an |origin|, run the following steps:
-1. For each instance |data| of NavigatorManagedData:
+When any of the configuration values under the origin-level key changes for an [=origin=] |origin|, run the following steps:
+1. For each instance |data| of {{NavigatorManagedData}}:
     1. Let |document| be |data|'s [=relevant global object=]'s associated [=Document=].
-    1. If |document| is fully active and |document|'s [=origin=] is equal to |origin|, [=fire an event=] named |managedconfigurationchange| at |data| with no value associated with it.
+    1. If |document| is [=fully active=] and |document|'s [=origin=] is equal to |origin|, [=fire an event=] named [=managedconfigurationchange=] at |data| with no value associated with it.
 
 
 # Security considerations # {#security-considerations}
 
-in accordance with the modern security practices, the configuration data is designed to be isolated by origin and available to secure contexts only, thus preventing other websites from accessing it.
+In accordance with the modern security practices, the configuration data is designed to be isolated by origin and available to secure contexts only, thus preventing other websites from accessing it.
 
 # Privacy considerations # {#privacy-considerations}
 
