@@ -97,6 +97,16 @@ navigator.managed.getManagedConfiguration(["interactable"])
      // Process the value of the key.
 });
 </xmp>
+
+For apps that are not managed, the promise gets rejected.
+
+<xmp class="lang-js">
+navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
+ .then(onSuccess, function(error) { 
+      console.log(error.name); // Will print "NotAllowedArror");
+});
+</xmp>
+
 </div>
 
   The <dfn method for="NavigatorManagedData">getManagedConfiguration(|keys|)</dfn> method steps are:
@@ -113,6 +123,19 @@ navigator.managed.getManagedConfiguration(["interactable"])
   1. Return |promise|.
 
 ## {{onmanagedconfigurationchange}} attribute ## {#onmanagedconfigurationchange-attribute}
+
+<div class="example">
+A client can subscribe to the managed configuration updates by subscribiting to the [=managedconfigurationchange=] event.
+
+<xmp class="lang-js">
+navigator.managed.addEventListener("managedconfigurationchange",
+ function() { 
+     // Whenever something changes in the configuration, this method is
+     // called.
+});
+</xmp>
+
+</div>
 
 {{onmanagedconfigurationchange}} is an event handler IDL attribute for the <code><dfn>managedconfigurationchange</dfn></code> event type.
 
