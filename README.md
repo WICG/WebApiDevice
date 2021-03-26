@@ -8,8 +8,8 @@ Currently, the Managed Device Web API is only available on Chrome OS devices (Ch
 To test these new APIs, the following two feature flags need to be turned on in the Experiments page (`chrome://flags`).
 * **enable-experimental-web-platform-features**: enables experimental Web Platform features that are in development.
 * **enable-restricted-web-apis**: enables the restricted web APIs for the 'Dev Trials' stage.
-#### Trusted application
-Only trusted applications are available to use the Managed Web API. Please follow the guide [Automatically install apps and extensions](https://support.google.com/chrome/a/answer/6306504) to configure a web application for test purpose.
+#### Managed applications
+Only managed applications are available to use the Managed Web API. Please follow the guide [Automatically install apps and extensions](https://support.google.com/chrome/a/answer/6306504) to configure a web application for test purpose.
 
 ### Managed Configuration
 #### Setting up Chrome Policy
