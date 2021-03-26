@@ -78,6 +78,27 @@ Methods on this interface typically complete asynchronously, queuing work on the
 
 ## {{getManagedConfiguration()}} method ## {#getmanagedconfiguration-method}
 
+<div class="example">
+Suppose the following configuration was set by the administrator for the current [=origin=].
+
+<xmp class="lang-js">
+{
+   "interactable" : "false",
+   "deviceType" : "map"
+}
+</xmp>
+
+A client, which would like to get a configuration for a particular |key| would call:
+
+<xmp class="lang-js">
+navigator.managed.getManagedConfiguration(["interactable"])
+ .then(function(result) {
+     // result = { “interactable” : “false” }
+     // Process the value of the key.
+});
+</xmp>
+</div>
+
   The <dfn method for="NavigatorManagedData">getManagedConfiguration(|keys|)</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
   1. Run the following steps in parallel:

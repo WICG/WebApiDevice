@@ -6,7 +6,7 @@
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
   <meta content="Bikeshed version b94c7e755, updated Fri Feb 19 16:28:59 2021 -0800" name="generator">
   <link href="https://wicg.github.io/WebApiDevice/managed_config" rel="canonical">
-  <meta content="071d10f9cc020f66fca57ecdaca2633ad75b7b2a" name="document-revision">
+  <meta content="0d7bee175989a8f87b46f7ef8b522a6f5afa003a" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -681,6 +681,21 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
 </pre>
    <p>Methods on this interface typically complete asynchronously, queuing work on the <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="managed-data-task-source">managed data task source</dfn>.</p>
    <h3 class="heading settled" data-level="3.1" id="getmanagedconfiguration-method"><span class="secno">3.1. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#dom-navigatormanageddata-getmanagedconfiguration" id="ref-for-dom-navigatormanageddata-getmanagedconfiguration①">getManagedConfiguration()</a></code> method</span><a class="self-link" href="#getmanagedconfiguration-method"></a></h3>
+   <div class="example" id="example-7cceb442">
+    <a class="self-link" href="#example-7cceb442"></a> Suppose the following configuration was set by the administrator for the current <a data-link-type="dfn">]origin</a>. 
+<pre class="lang-js highlight"><c- p>{</c->
+   <c- u>"interactable"</c-> <c- o>:</c-> <c- u>"false"</c-><c- p>,</c->
+   <c- u>"deviceType"</c-> <c- o>:</c-> <c- u>"map"</c->
+<c- p>}</c->
+</pre>
+    <p>A client, which would like to get a configuration for a particular <var>key</var> would call:</p>
+<pre class="lang-js highlight">navigator<c- p>.</c->managed<c- p>.</c->getManagedConfiguration<c- p>([</c-><c- u>"interactable"</c-><c- p>])</c->
+ <c- p>.</c->then<c- p>(</c-><c- a>function</c-><c- p>(</c->result<c- p>)</c-> <c- p>{</c->
+     <c- c1>// result = { “interactable” : “false” }</c->
+     <c- c1>// Process the value of the key.</c->
+<c- p>});</c->
+</pre>
+   </div>
    <p>The <dfn class="dfn-paneled idl-code" data-dfn-for="NavigatorManagedData" data-dfn-type="method" data-export id="dom-navigatormanageddata-getmanagedconfiguration"><code>getManagedConfiguration(<var>keys</var>)</code></dfn> method steps are:</p>
    <ol>
     <li data-md>
