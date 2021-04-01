@@ -19,7 +19,7 @@ Since the app configuration can potentially be big, we should not send the data 
 
 We created a new policy called “ManagedConfigurationPerOrigin”, which holds a list of links to the configuration file and the hashed value of that file for each of the configured origins. We will redownload the configuration in case of the hash change. 
 
-```json
+```js
 [ 
     {
         'origin': 'https://www.google.com',
