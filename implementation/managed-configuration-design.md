@@ -4,7 +4,7 @@
 Provide an API which will be able to asynchronously obtain/monitor configuration provided by the enterprise admin. This configuration is set up in the Admin Panel by uploading a JSON file, which contains key-value configuration.
 
 ## Overview
-We will add a new policy, which receive the key-value configuration from the Admin Panel, store it in a client read-only leveldb database associated with the web app id, and provide the access to it via new javascript bindings.
+We will add a new policy, which receive the key-value configuration from the Admin Panel, store it in a client read-only leveldb database associated with the web app origin, and provide the access to it via new javascript bindings.
 
 ## Detailed design
 ### Scoping managed configuration
