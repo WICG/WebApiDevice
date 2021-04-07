@@ -9,7 +9,6 @@ To test these new APIs, the following two feature flags need to be turned on in 
 * **enable-experimental-web-platform-features**: enables experimental Web Platform features that are in development.
 * **enable-restricted-web-apis**: enables the restricted web APIs for the 'Dev Trials' stage.
 * **enable-managed-configuration-web-api**: enables managed configuration API.
-* 
 #### Managed applications
 Only managed applications are available to use the Managed Web API. Please follow the guide [Automatically install apps and extensions](https://support.google.com/chrome/a/answer/6306504) to configure a web application for test purpose.
 
