@@ -130,8 +130,8 @@ function failureCallback(error) {
 }
 
 function PrepareTariff() {
-  navigator.device.getAnnotatedLocation()
-                  .then(successCallback, failureCallback);
+  navigator.managed.getAnnotatedLocation()
+                   .then(successCallback, failureCallback);
 }
 ```
 
@@ -139,6 +139,6 @@ It is easy to write another similar code snippet to report the sales data includ
 
 ```javascript
 function ReportSalesData() {
-  navigator.device.getAnnotatedAssetId.then(reportCallback);
+  navigator.managed.getAnnotatedAssetId.then(reportCallback);
 }
 ```
