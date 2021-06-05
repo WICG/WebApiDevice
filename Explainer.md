@@ -106,7 +106,7 @@ Returns a promise for the string containing an inventory management system-defin
 **Promise\<DOMString\> navigator.managed.getHostname()**
 Returns a promise for the string containing an administrator-defined value which is used as the device hostname during DHCP request.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
-* If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
+* If no hostname has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getSerialNumber()**
 Returns a promise for the string containing a manufacturer-defined value which uniquely identifies a device.
