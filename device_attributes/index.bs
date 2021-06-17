@@ -1,0 +1,23 @@
+<pre class='metadata'>
+Title: Device Attributes API
+Shortname: device-attributes
+Level: 1
+Editor: Anqing 130190, Google LLC https://www.google.com, anqing@google.com
+Status: w3c/CG-DRAFT
+URL: https://wicg.github.io/WebApiDevice/device_attributes
+Abstract: test
+Repository: https://github.com/WICG/WebApiDevice
+Group: wicg
+</pre>
+
+<pre class=link-defaults>
+spec:html; type:interface; text:Navigator
+spec:url; type:dfn; text:origin
+spec:html; type:dfn; for:/; text:global object
+spec:webidl; type:dfn; text:resolve
+spec:webidl; type:dfn; text:record
+</pre>
+
+<pre class="anchors">
+
+</pre>
