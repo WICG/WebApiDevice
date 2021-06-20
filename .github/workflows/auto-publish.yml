@@ -1,0 +1,28 @@
+name: CI
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+jobs:
+  main:
+    name: Build, Validate and Deploy
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: managed_config.bs
+        uses: w3c/spec-prod@v2
+        with:
+          SOURCE: managed_config/index.bs
+          DESTINATION: managed_config/index.html
+          TOOLCHAIN: bikeshed
+          BUILD_FAIL_ON: warning
+          GH_PAGES_BRANCH: gh-pages
+      - name: device_attributes.bs
+        uses: w3c/spec-prod@v2
+        with:
+          SOURCE: device_attributes/index.bs
+          DESTINATION: device_attributes/index.html
+          TOOLCHAIN: bikeshed
+          BUILD_FAIL_ON: warning
+          GH_PAGES_BRANCH: gh-pages
+
