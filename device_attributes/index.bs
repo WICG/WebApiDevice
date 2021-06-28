@@ -84,7 +84,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
  
   The <dfn method for="NavigatorManagedData">getAnnotatedAssetId()</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
-  1. Run the following steps in parallel:
+  1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
       1. Let |annotatedAssetId| be the [=annotated asset id=] set by the administrator, or {{undefined}} if one has not been set.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |annotatedAssetId|.
@@ -94,7 +94,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
  
   The <dfn method for="NavigatorManagedData">getAnnotatedLocation()</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
-  1. Run the following steps in parallel:
+  1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
       1. Let |annotatedLocation| be the [=annotated location=] set by the administrator, or {{undefined}} if one has not been set.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |annotatedLocation|.
@@ -104,9 +104,9 @@ Methods on this interface typically complete asynchronously, queuing work on the
  
   The <dfn method for="NavigatorManagedData">getDirectoryId()</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
-  1. Run the following steps in parallel:
+  1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
-      1. Let |directoryId| be the [=directory id=], or {{undefined}} if one is unknown.
+      1. Let |directoryId| be the [=directory id=], or {{undefined}} if one is not provided by the management infrastructure.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |directoryId|.
   1. Return |promise|.
  
@@ -114,7 +114,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
  
   The <dfn method for="NavigatorManagedData">getHostname()</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
-  1. Run the following steps in parallel:
+  1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
       1. Let |hostname| be the [=hostname=] set by the administrator, or {{undefined}} if one has not been set.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |hostname|.
@@ -124,9 +124,9 @@ Methods on this interface typically complete asynchronously, queuing work on the
  
   The <dfn method for="NavigatorManagedData">getSerialNumber()</dfn> method steps are:
   1. Let |promise| be [=a new promise=].
-  1. Run the following steps in parallel:
+  1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
-      1. Let |serialNumber| be the [=serial number=], or {{undefined}} if one is unknown.
+      1. Let |serialNumber| be the [=serial number=], or {{undefined}} if it is not available.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |serialNumber|.
   1. Return |promise|.
  
