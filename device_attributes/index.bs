@@ -21,26 +21,30 @@ spec:webidl; type:dfn; text:record
 <pre class="anchors">
  
 </pre>
+
+# Introduction # {#introduction}
+ 
+The Device Attributes API allows [=device administrators=] to allow certain origins to access certain attributes of the device running the UA. Unlike [[MANAGED-CONFIG]], which allows the [=device administrator=] to pass a custom JSON object to each origin, this API expects to pass the same set of values to all origins that the administrator has enabled.
  
 # Model # {#model}
  
 ## Managed devices ## {#managed-devices}
  
-The API is presumed to be used on devices which are not fully controlled by the end user, but rather by an external entity, the device administrator. Device administrators are given the power to fully control the managed devices.
+The API is presumed to be used on devices which are not fully controlled by the end user, but rather by an external entity, <dfn>device administrator</dfn>. [=Device administrators=] are given the power to fully control the managed devices.
  
 ## Managed web applications ## {#managed-web-applications}
  
-The API is presumed to be used by web applications, which are understood and managed by the device administrators.
+The API is presumed to be used by web applications, which are understood and managed by the [=device administrators=].
 
 ## Permission control ## {#permission-control}
 
-Most operating systems have a mechanism for the deployment of policies which can be used to configure many aspects of a device's operating system or applications such as the web browser. This specification requires that permission to access these device attributes is configured through such a system. These policies are controlled by device owners and administrators. They may not necessarily have the device user's best interests.
+Most operating systems have a mechanism for the deployment of policies which can be used to configure many aspects of a device's operating system or applications such as the web browser. This specification requires that permission to access these device attributes is configured through such a system. These policies are controlled by [=device administrators=]. They may not necessarily have the device user's best interests.
 
-Taking Chrome browser as an example, the status of managed web application is given to the origins which correspond to web applications selected by organization administrators in the <a href="https://support.google.com/a/topic/2413312">Google Admin Console</a> and are automatically installed on the enterprise managed devices. For a managed web applications, permission to access these device attributes can be revoked if the administrator doesn’t want to provide a specific application access.
+Taking Chrome browser as an example, the status of managed web application is given to the origins which correspond to web applications selected by [=device administrators=] in the <a href="https://support.google.com/a/topic/2413312">Google Admin Console</a> and are automatically installed on the enterprise managed devices. For a managed web applications, permission to access these device attributes can be revoked if the [=device administrator=] doesn’t want to provide a specific application access.
 
 ## Device attributes ## {#device-attributes}
  
-The API is presumed to be used with a management infrastructure which allows administrators to manage a fleet of devices and configure properties for those devices.
+The API is presumed to be used with a management infrastructure which allows [=device administrators=] to manage a fleet of devices and configure properties for those devices.
  
 ### <dfn>Annotated Asset ID</dfn> ### {#annotated-asset-id-section}
 
@@ -86,7 +90,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
-      1. Let |annotatedAssetId| be the [=annotated asset id=] set by the administrator, or {{undefined}} if one has not been set.
+      1. Let |annotatedAssetId| be the [=annotated asset id=] set by the [=device administrator=], or {{undefined}} if one has not been set.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |annotatedAssetId|.
   1. Return |promise|.
  
@@ -96,7 +100,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
-      1. Let |annotatedLocation| be the [=annotated location=] set by the administrator, or {{undefined}} if one has not been set.
+      1. Let |annotatedLocation| be the [=annotated location=] set by the [=device administrator=], or {{undefined}} if one has not been set.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |annotatedLocation|.
   1. Return |promise|.
  
@@ -116,7 +120,7 @@ Methods on this interface typically complete asynchronously, queuing work on the
   1. Let |promise| be [=a new promise=].
   1. Run the following steps [=in parallel=]:
       1. If this API is not called by a managed web application with permission to access device attributes, [=queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=reject=] |promise| with a "{{NotAllowedError}}" {{DOMException}} and abort these steps.
-      1. Let |hostname| be the [=hostname=] set by the administrator, or {{undefined}} if one has not been set.
+      1. Let |hostname| be the [=hostname=] set by the [=device administrator=], or {{undefined}} if one has not been set.
       1. [=Queue a global task=] on the [=relevant global object=] of [=this=] using the [=managed data task source=] to [=resolve=] |promise| with |hostname|.
   1. Return |promise|.
  
@@ -161,7 +165,7 @@ function PrepareTariff() {
  
 It is easy to write another similar code snippet to report the sales data including a device serial number by using {{getAnnotatedAssetId()}} method. 
  
-NOTE: The website should assume that the data could be tampered with, stolen or reused on another managed device. Alternative security measures should be put in place by the website itself.)
+NOTE: The website should assume that the data could be tampered with, stolen or reused on another managed device. Alternative security measures should be put in place by the website itself.
  
 <div class="example">
  
@@ -175,7 +179,7 @@ function ReportSalesData() {
  
 # Security considerations # {#security-considerations}
  
-In accordance with modern security practices, the permission of using these methods is controlled by the administrator per origin. In addition, they are only available to [=secure contexts=] on the managed devices.
+In accordance with modern security practices, the permission of using these methods is controlled by the [=device administrator=] per origin. In addition, they are only available to [=secure contexts=] on the managed devices.
 
 # Privacy considerations # {#privacy-considerations}
 
@@ -191,10 +195,10 @@ In accordance with modern security practices, the permission of using these meth
 }
 </pre>
  
-This API provides access to device attributes which will be the same for all origins. (See [[MANAGED-CONFIG]] for per-origin configuration of managed sites.) This could easily be used for tracking purposes if exposed arbitrarily. In a managed environment however, where an administrator is configuring a fleet of machines for particular employees or tasks, it is desirable for these machines to be able to identify themselves to the sites they are expected to be accessing.
+This API provides access to device attributes which will be the same for all origins. (See [[MANAGED-CONFIG]] for per-origin configuration of managed sites.) This could easily be used for tracking purposes if exposed arbitrarily. In a managed environment however, where an [=device administrator=] is configuring a fleet of machines for particular employees or tasks, it is desirable for these machines to be able to identify themselves to the sites they are expected to be accessing.
  
 It is a non-goal for this interface to be used on unmanaged devices. End users are never asked to provide this information to a site. The decision of which origins are granted permission to access these device attributes is made by an authorized administrator of the organization to which they belong.
 
-To prevent unnecessary information exposure the configuration mechanism requires the administrator to grant access to these attributes to a limited set of origins, as granting access to all origins would create a mechanism for pervasive tracking of all web browsing on the device. Origins that are granted access are additionally [=secure contexts=] so that passive network attackers are unable to observe these attributes in transit.
+To prevent unnecessary information exposure the configuration mechanism requires the [=device administrator=] to grant access to these attributes to a limited set of origins, as granting access to all origins would create a mechanism for pervasive tracking of all web browsing on the device. Origins that are granted access are additionally [=secure contexts=] so that passive network attackers are unable to observe these attributes in transit.
 
-NOTE: <a href="https://datatracker.ietf.org/doc/html/rfc7258">RFC7285</a> treats pervasive monitoring as an attack, but it doesn't apply to managed devices. In such cases, the actual owner of managed devices is not the end user but the device administrator who is expected to protect all end users by using proper permissions. 
+NOTE: [[RFC7258]] treats pervasive monitoring as an attack, but it doesn't apply to managed devices. In such cases, the actual owner of managed devices is not the end user but the [=device administrator=] who is expected to protect all end users by using proper permissions. 
