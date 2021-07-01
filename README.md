@@ -1,4 +1,10 @@
 # WebApiDevice
+
+## Draft Specifications
+
+* [Managed Configuration API](https://wicg.github.io/WebApiDevice/managed_config)
+* [Device Attributes API](https://wicg.github.io/WebApiDevice/device_attributes/)
+
 ## How to test these features?
 
 ### Preconditions
