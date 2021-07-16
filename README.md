@@ -62,12 +62,12 @@ Please follow the guide [Asset identifier during enrollment](https://support.goo
 Please prepare a Chrome OS device, and switch it into [developer mode](https://chromium.googlesource.com/chromiumos/docs/+/HEAD/developer_mode.md#dev-mode).
 
 ### Setting up feature flags
-Please choose either of following approaches to enable the required feature flags.
-* Turn on the `enable-experimental-web-platform-features` flag in the Experiments page (`chrome://flags`) if a Chrome browser is available.
-* Add a line `--enable-experimental-web-platform-features` into the `/etc/chrome_dev.conf` file if a Chrome browser is not available.
+In order to enable this API in Chrome, the experimental web platform features should be enabled. It can be done either by either of the following approaches.
+* Turn on the `enable-experimental-web-platform-features` flag in the Experiments page (`chrome://flags`).
+* Add `--enable-experimental-web-platform-features` into `/etc/chrome_dev.conf` file on your test device.
 
 ### Setting up test policies
-Please add a `DeviceAttributesAllowedForOrigins` policy in the `test_policy.json` file to allow specific origins to access device attributes. See [Linux Quick Start](https://www.chromium.org/administrators/linux-quick-start) for more details. Here is an example of enabling the permissions for Google search website.
+Please add a `DeviceAttributesAllowedForOrigins` policy into `test_policy.json` file to allow specific origins to access device attributes. Here is an example of enabling the permissions for Google search website.
 
 ```yaml
 {
@@ -78,12 +78,12 @@ Please add a `DeviceAttributesAllowedForOrigins` policy in the `test_policy.json
 ```
 
 ### Verification in the Chrome DevTools Console
-The easiest way to verify the attribute results is calling these APIs in the [Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console). Take an example, the following code snippet can be used to print the current device's serial number in the console.
+To verify the correctness of this API, you can test it by using [Chrome DevTools Console](https://developers.google.com/web/tools/chrome-devtools/console). Take an example, the following code snippet can be used to print the current device's serial number in the console.
 ```javascript
 navigator.managed.getSerialNumber(console.log);
 ```
 
-### Please attention!
-* Device attributes API is unavailable if the current user is unaffiliated.
+### Attention!
+* Device attributes API is unavailable if the current user is unaffiliated (i.e. the account enrolled into the device and session don't have the same domain).
 * Device attributes API is unavailable if the current application is not managed.
 * Device attributes API is unavailable in the Incognito mode.
