@@ -67,7 +67,7 @@ In order to enable this API in Chrome, the experimental web platform features sh
 * Add `--enable-experimental-web-platform-features` into `/etc/chrome_dev.conf` file on your test device.
 
 ### Setting up test policies
-Add a `DeviceAttributesAllowedForOrigins` policy into `test_policy.json` file to allow specific origins to access device attributes. Here is an example of enabling the permissions for Google search website.
+Add a `DeviceAttributesAllowedForOrigins` policy into `/etc/opt/chrome/policies/managed/test_policy.json` file to allow specific origins to access device attributes. Here is an example of enabling the permissions for Google search website.
 
 ```yaml
 {
