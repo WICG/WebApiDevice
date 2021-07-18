@@ -56,18 +56,18 @@ If the configuration is set properly, the value from the JSON configuration shal
 
 ## Device Attributes API
 ### [Optional] Setting up the annotated Asset ID and Location
-Please follow the guide [Asset identifier during enrollment](https://support.google.com/chrome/a/answer/2657289?hl=en#allow_to_update_device_attribute) to customize the annotated Asset ID and Location during enrollment if you want to test the corresponding Web APIs.
+Follow the guide [Asset identifier during enrollment](https://support.google.com/chrome/a/answer/2657289?hl=en#allow_to_update_device_attribute) to customize the annotated Asset ID and Location during enrollment if you want to test the corresponding Web APIs.
 
 ### Enable developer mode on the test device
-Please prepare a Chrome OS device, and switch it into [developer mode](https://chromium.googlesource.com/chromiumos/docs/+/HEAD/developer_mode.md#dev-mode).
+Prepare a Chrome OS device, and switch it into [developer mode](https://chromium.googlesource.com/chromiumos/docs/+/HEAD/developer_mode.md#dev-mode).
 
 ### Setting up feature flags
-In order to enable this API in Chrome, the experimental web platform features should be enabled. It can be done either by either of the following approaches.
+In order to enable this API in Chrome, the experimental web platform features should be enabled. It can be done by either of the following approaches.
 * Turn on the `enable-experimental-web-platform-features` flag in the Experiments page (`chrome://flags`).
 * Add `--enable-experimental-web-platform-features` into `/etc/chrome_dev.conf` file on your test device.
 
 ### Setting up test policies
-Please add a `DeviceAttributesAllowedForOrigins` policy into `test_policy.json` file to allow specific origins to access device attributes. Here is an example of enabling the permissions for Google search website.
+Add a `DeviceAttributesAllowedForOrigins` policy into `test_policy.json` file to allow specific origins to access device attributes. Here is an example of enabling the permissions for Google search website.
 
 ```yaml
 {
@@ -84,6 +84,6 @@ navigator.managed.getSerialNumber(console.log);
 ```
 
 ### Attention!
-* Device attributes API is unavailable if the current user is unaffiliated (i.e. the account enrolled into the device and session don't have the same domain).
-* Device attributes API is unavailable if the current application is not managed.
+* Device attributes API is unavailable if the current user is not managed or affiliated. (In Chrome, `affiliated` means that device administrator account and current user account share the same domain.)
+* Device attributes API is unavailable if the current web application is not managed.
 * Device attributes API is unavailable in the Incognito mode.
