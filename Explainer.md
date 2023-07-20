@@ -142,3 +142,13 @@ function ReportSalesData() {
   navigator.managed.getAnnotatedAssetId.then(reportCallback);
 }
 ```
+#### Design considerations
+##### Single getter method with keys
+This option was considered in the beginning, but wasn't chosen because of the following reasons:
+* It doesn't simplify the specification of various device attributes. Each reserved key still needs to be defined separately.
+* It also needs to be checked if implemented in a specific API version.
+##### Reusing managed configuration
+Adding new special keys for device attributes to managed configuration has difficulties:
+* Ensuring that the new key isn't already used by some managed configurations. Such conflict may suddenly break the existing web applications.
+* Managed configuration is set as an application setting, meaning that it is the same config received by all devices in some organisational unit that host this application. On the other hand device attributes (e.g. annotated location) can be set uniquely per device (as device settings).
+* Managed configuration API doesn't require a managed (force-installed) application, but the Device Attributes API does.
