@@ -90,26 +90,27 @@ Device Attributes Web API is a subset of Managed Device Web API, that provides t
 In addition to the requirement of being called by a trusted application, Device Attributes Web API usually asks for more consents from the device users or administrators before they are able to return meaningful results. Please check the rules in the definition of each.
 #### Interface definition
 **Promise\<DOMString\> navigator.managed.getAnnotatedAssetId()**
-Returns a promise for the string containing an administrator-defined value which uniquely identifies a device within an organization.
+Returns a promise for a string. It contains an administrator-defined value which identifies a device within an organization.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getAnnotatedLocation()**
-Returns a promise for the string containing an administrator-defined value which uniquely identifies a location within an organization.
+Returns a promise for a string. It contains an administrator-defined value which identifies a location within an organization.
 * If this API is not called by a trusted application, this promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Location has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getDirectoryId()**
-Returns a promise for the string containing an inventory management system-defined value which uniquely identifies a device within an organization.
+Returns a promise for a string. It contains an inventory management system-defined value which identifies a device within an organization.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If no Directory Id has been set, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getHostname()**
-Returns a promise for the string containing an administrator-defined value which is used as the device hostname during DHCP request.
+Returns a promise for a string. It contains an administrator-defined value which is used as the device hostname during DHCP request.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
-* If no hostname has been set by the administrator, the promise is resolved with ‘undefined’ value.
+* If no Hostname has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getSerialNumber()**
-Returns a promise for the string containing a manufacturer-defined value which uniquely identifies a device.
+Returns a promise for a string. It contains a manufacturer-defined value which uniquely identifies a device.
 * If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 #### Usage example
 Assuming there is a retail enterprise that relies on an online sales system. The backend service pushes different tariffs to the in-store devices based on their annotated location (country, city or sales region) in the morning, and collects sales reports in the afternoon.
