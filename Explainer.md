@@ -1,6 +1,6 @@
 # Managed Device Web API
 ## What is this?
-This is a proposal to add a series of device related Web APIs that are expected to be used by managed applications (e.g., applications installed by the administrator). These APIs are explicitly enabled by device owners or administrators through an enterprise policy or an equivalent mechanism. Supporting the similar functionalities in unmanaged devices is a non-goal.
+This is a proposal to add a series of device related Web APIs that are expected to be used by managed applications (e.g. applications installed by the administrator). These APIs are explicitly enabled by device owners or administrators through an enterprise policy or an equivalent mechanism. Supporting the similar functionalities in unmanaged devices is a non-goal.
 ## What is the motivation?
 It’s a common requirement for web developers to provide diversified user experience or build a verified operating environment based on device-specific characteristics and configurations, especially in the field of commercial applications.
 
