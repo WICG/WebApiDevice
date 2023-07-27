@@ -1,22 +1,22 @@
 # Managed Device Web API
 ## What is this?
-This is a proposal to add a series of device related Web APIs that are expected to be used by the applications with the highest degree of trust (i.e., trusted applications). These APIs are explicitly enabled by device owners or administrators through an enterprise policy or an equivalent mechanism. Supporting the similar functionalities in unmanaged devices is a non-goal.
+This is a proposal to add a series of device related Web APIs that are expected to be used by managed applications (e.g., applications installed by the administrator). These APIs are explicitly enabled by device owners or administrators through an enterprise policy or an equivalent mechanism. Supporting the similar functionalities in unmanaged devices is a non-goal.
 ## What is the motivation?
 It’s a common requirement for web developers to provide diversified user experience or build a verified operating environment based on device-specific characteristics and configurations, especially in the field of commercial applications.
 
 Chrome browser started providing such kinds of capabilities in the form of Chrome API many years ago. Although they have been widely used in a variety of scenarios, the drawback is still apparent - Chrome API is not platform independent. In order to better fulfill the ever-increasing demand on web applications, it will be helpful to add a set of similar Web APIs to fill this gap.
-## What are trusted applications?
+## What are managed applications?
 The APIs that are able to get device information are usually treated as powerful capabilities because this data belongs to [Personally Identifiable Information (PII)](https://en.wikipedia.org/wiki/Personal_data), thus exposing it to the general web would be a privacy violation. Therefore, these Web APIs are only avaliable in the managed devices with consent from the device owners or administrators. They usually only want to allow them in appropriate cases, and limit to a set of pre-approved web applications they understand and trust.
 
-To reduce the potential privacy and security risks, these API should cowork with a matching authentication mechanism defined by various browsers. There should be a central management console to control which applications are trusted and which are not. Ideally the application permissions should be decided by a IT administrator role (rather than a regular user role) because individual users may expose their sensitive information unconsciously.
+To reduce the potential privacy and security risks, these API should cowork with a matching authentication mechanism defined by various browsers. There should be a central management console to control applications setup and permissions. Ideally the application permissions should be decided by a IT administrator role (rather than a regular user role) because individual users may expose their sensitive information unconsciously.
 
-A status of trusted is given to a web application based on its origin, as it is de facto the boundary mechanism on the Web (permissions, local storage, requests are all scoped/restricted per origin). 
+Origin of a managed web application is considered trusted. This is a condition to expose the API, as origin is de facto the boundary mechanism on the Web (permissions, local storage, requests are all scoped/restricted per origin). 
 
-Take Chrome browser as an example, the status of trusted applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices. The permissions can be revoked if administrators don't want to provide specific functionalities on the managed devices.
+E.g. in Chrome browser the status of managed applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices. The permissions can be revoked if administrators don't want to provide specific functionalities on the managed devices.
 ## How is Managed Device Web API defined?
-We propose to add a new read-only property ‘managed’ into the [navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for trusted applications.
+We propose to add a new read-only property ‘managed’ into the [navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for managed applications.
 
-Technically speaking, the API signatures are always exposed to any caller in Javascript, but only the applications that meet the criteria can get a meaningful result. For specific browsers that provide the ability to switch users, the availability of Managed Device Web API is verified and reconfigured whenever the active user is changed to another. The same web applications cannot use these APIs any longer if they are not considered as trusted applications by the new user.
+Technically speaking, the API signatures are always exposed to any caller in Javascript, but only the applications that meet the criteria can get a meaningful result. For specific browsers that provide the ability to switch users, the availability of Managed Device Web API is verified and reconfigured whenever the active user is changed to another. The same web applications cannot use these APIs any longer if they are not considered a managed application in a different session.
 
 ## Detailed description
 ### Managed Configuration
@@ -26,7 +26,7 @@ On devices that are managed by an organization, there is a need to thoroughly se
 * **Signage configuration**: an enterprise application pulls the commercial content from the management console, then demonstrates it to the customers on in-store devices.
 * **Personalization**: an enterprise application pulls the application settings (i.e., single-touch or multi-touch on a tablet) from the management console preferred by administrators, then applies them to the local devices.
 
-Managed Configuration API only returns meaningful values when the web application is highly-trusted by the user agent, otherwise it will fail with an exception.
+Managed Configuration API only returns meaningful values when the web application is trusted by the user agent, otherwise it will fail with an exception.
 #### Interface definition
 **Promise\<object\> navigator.managed.getManagedConfiguration(sequence\<DOMString\> keys)**  
 Returns a promise, which will be resolved into an object containing key-value pairs for each of the key from |keys| that is configured for this application.
@@ -64,7 +64,7 @@ navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
 });
 ```
 
-For apps that are not _highly trusted_, the promise gets rejected.
+For web apps that are not _trusted_, the promise gets rejected.
 
 ```javascript
 navigator.managed.getManagedConfiguration(["interactable","deviceType","theme"])
@@ -87,31 +87,31 @@ Device Attributes Web API is a subset of Managed Device Web API, that provides t
 * **Virtual Desktop Infrastructure (VDI)**: an enterprise application launched on the client side needs to pull the device ID / serial number from the local device it is running on. Then the VDI provider can rely on this information to determine which user is using which device at any point in time.
 * **Context-based configuration**: an enterprise application needs to apply a specific configuration to a local device based on device attributes like location, asset ID. Then different users can have appropriate experience respectively.
 
-In addition to the requirement of being called by a trusted application, Device Attributes Web API usually asks for more consents from the device users or administrators before they are able to return meaningful results. Please check the rules in the definition of each.
+In addition to the requirement of being called by a managed application, Device Attributes Web API usually asks for more consents from the device users or administrators before they are able to return meaningful results. Please check the rules in the definition of each.
 #### Interface definition
 **Promise\<DOMString\> navigator.managed.getAnnotatedAssetId()**
 Returns a promise for a string. It contains an administrator-defined value which identifies a device within an organization.
-* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a managed application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Asset Id has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getAnnotatedLocation()**
 Returns a promise for a string. It contains an administrator-defined value which identifies a location within an organization.
-* If this API is not called by a trusted application, this promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a managed application, this promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Annotated Location has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getDirectoryId()**
 Returns a promise for a string. It contains an inventory management system-defined value which identifies a device within an organization.
-* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a managed application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Directory Id has been set, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getHostname()**
 Returns a promise for a string. It contains an administrator-defined value which is used as the device hostname during DHCP request.
-* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a managed application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 * If no Hostname has been set by the administrator, the promise is resolved with ‘undefined’ value.
 
 **Promise\<DOMString\> navigator.managed.getSerialNumber()**
 Returns a promise for a string. It contains a manufacturer-defined value which uniquely identifies a device.
-* If this API is not called by a trusted application, the promise is rejected with a ‘NotAllowedError’ DOMException.
+* If this API is not called by a managed application, the promise is rejected with a ‘NotAllowedError’ DOMException.
 #### Usage example
 Assuming there is a retail enterprise that relies on an online sales system. The backend service pushes different tariffs to the in-store devices based on their annotated location (country, city or sales region) in the morning, and collects sales reports in the afternoon.
 
