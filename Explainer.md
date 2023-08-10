@@ -12,7 +12,14 @@ To reduce the potential privacy and security risks, these API should cowork with
 
 Origin of a managed web application is considered trusted. This is a condition to expose the API, as origin is de facto the boundary mechanism on the Web (permissions, local storage, requests are all scoped/restricted per origin). 
 
-E.g. in Chrome browser the status of managed applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices. The permissions can be revoked if administrators don't want to provide specific functionalities on the managed devices.
+For example, in Chrome browser or ChromeOS the status of managed applications is given to those origins, which correspond to web applications selected by organization administrators, that are configured in the [Google Admin Console](https://support.google.com/a/topic/2413312) and forced-installed on the enterprise managed devices:
+
+![Alt text](images/managed_app_example.png)
+
+Application permissions can also be explicitly set and locked by administrators if they want to enable or restrict specific functionalities on their managed devices:
+
+![Alt text](images/managed_setting_example.png)
+
 ## How is Managed Device Web API defined?
 We propose to add a new read-only property ‘managed’ into the [navigator](https://developer.mozilla.org/en-US/docs/Web/API/Navigator) interface. It contains all powerful methods and related properties enabled for managed applications.
 
