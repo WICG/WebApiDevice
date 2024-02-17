@@ -35,7 +35,7 @@ On devices that are managed by an organization, there is a need to thoroughly se
 
 Managed Configuration API only returns meaningful values when the web application is trusted by the user agent, otherwise it will fail with an exception.
 #### Interface definition
-**Promise\<object\> navigator.managed.getManagedConfiguration(sequence\<DOMString\> keys)**  
+**Promise\<record\<DOMString, any\>\> navigator.managed.getManagedConfiguration(sequence\<DOMString\> keys)**  
 Returns a promise, which will be resolved into an object containing key-value pairs for each of the key from |keys| that is configured for this application.
 * This promise is rejected with a 'NotAllowedError' DOMException in case the web application is not configurable by the administrator. This is done so that applications are able to distinguish between such two cases and notify the user accordingly.
 
