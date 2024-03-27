@@ -16,6 +16,7 @@ spec:url; type:dfn; text:origin
 spec:html; type:dfn; for:/; text:global object
 spec:webidl; type:dfn; text:resolve
 spec:webidl; type:dfn; text:record
+spec:managed-configuration; type:interface; text:NavigatorManagedData
 </pre>
  
 <pre class="anchors">
@@ -69,10 +70,7 @@ A manufacturer-defined value which uniquely identifies a device among those prod
 # {{NavigatorManagedData}} interface # {#navigatormanageddata-interface}
  
 <xmp class="idl">
-[
-  SecureContext,
-  Exposed=Window
-] interface NavigatorManagedData : EventTarget {
+partial interface NavigatorManagedData {
   // Device Attributes API.
   Promise<DOMString> getAnnotatedAssetId();
   Promise<DOMString> getAnnotatedLocation();
