@@ -38,7 +38,7 @@ Note that this does not apply to anonymous contexts, where the observed state is
 
 We can assume without loss of generality that managed configuration is stored in a two-level key-value store.
 
-[=Data model=] is declared as a [=map=] where each [=key=] is a configured [=origin=] and the value is a <xmp><code>record<DOMString, object></code></xmp> with items corresponding to per-origin configuration keys and their values.
+[=Data model=] is declared as a [=map=] where each [=map/key=] is a configured [=origin=] and the value is a <xmp><code>record<DOMString, object></code></xmp> with items corresponding to per-origin configuration keys and their values.
 
 ## Data integrity verification ## {#data-integrity-verification}
 
