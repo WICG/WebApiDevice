@@ -8,9 +8,9 @@ This document suggests two changes to the existing
 - Establish the Device Attributes API as a
   [policy controlled feature](https://www.w3.org/TR/permissions-policy-1/#policy-controlled-feature)
   identified by the `device-attributes` token.
-- Remove the need for configuring an allowlist to grant the device attributes
-  permission in
-  [isolated contexts](https://wicg.github.io/isolated-web-apps/isolated-contexts.html).
+- Establish the Device Attributes API as a
+  [powerful feature](https://w3c.github.io/permissions/#dfn-powerful-feature)
+  identified by the `device-attributes` token.
 
 The Device Attributes API allows retrieving basic device properties, namely:
 
@@ -20,34 +20,30 @@ The Device Attributes API allows retrieving basic device properties, namely:
 - Annotated Asset ID
 - Annotated Location
 
-The API is available only on managed devices and only for applications installed
-by the organizations' administrators. The administrator needs to set an
-enterprise policy to allow access to the API.
+The API is available only on managed devices, which are controlled by the
+organizations' administrators.
 
 ## Motivation
 
-The goal of establishing the Device Attributes as a policy-controlled feature is
-to provide high-watermark permissions.
+The Device Attributes API allows web developers to querry information about the
+device. This information can be used for context-based configuration or other
+device-aware use cases such as licensing.
 
-In the
-[isolated context](https://wicg.github.io/isolated-web-apps/isolated-contexts.html),
-the web application needs to list all required permissions upfront in the app
-manifest. Because isolated context applications are considered more secure, they
-can grant the permission instead of requiring the enterprise policy like in the
-regular web applications.
+The goal of this change is to make the Device Attributes API usable with less
+configuration, while still maintaining administrators' control over what
+applications are allowed to access the API.
 
 ## Implementation
 
 The
 [Device Attributes API](https://wicg.github.io/WebApiDevice/device_attributes/),
-which is available only for policy-installed applications on managed devices,
-would become a
-[policy controlled feature](https://www.w3.org/TR/permissions-policy-1/#policy-controlled-feature).
-In the permissions policy it would be referred to as `device-attributes`.
-
-Additionally, in an isolated context the permission to use the API would be
-automatically granted. Regular web applications would still need the permission
-granted through enterprise policy, as it is now.
+which is available only for applications on managed devices, would become a
+[policy controlled feature](https://www.w3.org/TR/permissions-policy-1/#policy-controlled-feature)
+and a
+[powerful feature](https://w3c.github.io/permissions/#dfn-powerful-feature). In
+the permissions policy it would be referred to as `device-attributes`. The
+permission to use the API would be granted based on the policies set by the
+device administrators.
 
 ## Usage
 
