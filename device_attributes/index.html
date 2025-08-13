@@ -4,9 +4,9 @@
   <title>Device Attributes API</title>
   <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
   <link href="https://www.w3.org/StyleSheets/TR/2021/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 9a7a6709a, updated Tue May 27 16:45:34 2025 -0700" name="generator">
+  <meta content="Bikeshed version 3f621ba99, updated Mon Jul 28 15:38:36 2025 -0700" name="generator">
   <link href="https://wicg.github.io/WebApiDevice/device_attributes" rel="canonical">
-  <meta content="4103f38fa3ffbb4e56311fefa1855f7f5ba264e9" name="revision">
+  <meta content="3c82397cff7e5bc3acdc1c1afa606fb16c5c331f" name="revision">
   <meta content="dark light" name="color-scheme">
   <link href="https://www.w3.org/StyleSheets/TR/2021/dark.css" media="(prefers-color-scheme: dark)" rel="stylesheet" type="text/css">
 <style>/* Boilerplate: style-autolinks */
@@ -693,7 +693,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
  <body class="h-entry">
   <div class="head">
    <h1 class="p-name no-ref" id="title">Device Attributes API</h1>
-   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>, <time class="dt-updated" datetime="2025-06-09">9 June 2025</time></p>
+   <p id="w3c-state"><a href="https://www.w3.org/standards/types/#CG-DRAFT">Draft Community Group Report</a>,
+    <time class="dt-updated" datetime="2025-08-13">13 August 2025</time></p>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -706,7 +707,8 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
    </div>
    <div data-fill-with="warning"></div>
    <p class="copyright" data-fill-with="copyright"><a href="https://www.w3.org/policies/#copyright">Copyright</a> © 2025 the Contributors to the Device Attributes API Specification, published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a> under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>.
-A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available. </p>
+A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/">summary</a> is available.
+</p>
    <hr title="Separator for header">
   </div>
   <div class="p-summary" data-fill-with="abstract">
@@ -716,12 +718,17 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
   <div data-fill-with="at-risk"></div>
   <h2 class="no-num no-toc no-ref heading settled" id="status"><span class="content">Status of this document</span></h2>
   <div data-fill-with="status">
-   <p> This specification was published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a>.
+   <p>
+  This specification was published by the <a href="https://www.w3.org/community/wicg/">Web Platform Incubator Community Group</a>.
   It is not a W3C Standard nor is it on the W3C Standards Track.
 
-  Please note that under the <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a> there is a limited opt-out and other conditions apply.
+  Please note that under the
+  <a href="https://www.w3.org/community/about/agreements/cla/">W3C Community Contributor License Agreement (CLA)</a>
+  there is a limited opt-out and other conditions apply.
 
-  Learn more about <a href="http://www.w3.org/community/">W3C Community and Business Groups</a>. </p>
+  Learn more about
+  <a href="http://www.w3.org/community/">W3C Community and Business Groups</a>.
+</p>
    <p></p>
   </div>
   <div data-fill-with="at-risk"></div>
@@ -735,14 +742,15 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
       <li><a href="#managed-devices"><span class="secno">2.1</span> <span class="content">Managed devices</span></a>
       <li><a href="#managed-web-applications"><span class="secno">2.2</span> <span class="content">Managed web applications</span></a>
       <li><a href="#permission-control"><span class="secno">2.3</span> <span class="content">Permission control</span></a>
+      <li><a href="#permissions-policy"><span class="secno">2.4</span> <span class="content">Permissions policy</span></a>
       <li>
-       <a href="#device-attributes"><span class="secno">2.4</span> <span class="content">Device attributes</span></a>
+       <a href="#device-attributes-section"><span class="secno">2.5</span> <span class="content">Device attributes</span></a>
        <ol class="toc">
-        <li><a href="#annotated-asset-id-section"><span class="secno">2.4.1</span> <span class="content"><span>Annotated Asset ID</span></span></a>
-        <li><a href="#annotated-location-section"><span class="secno">2.4.2</span> <span class="content"><span>Annotated Location</span></span></a>
-        <li><a href="#directory-id-section"><span class="secno">2.4.3</span> <span class="content"><span>Directory ID</span></span></a>
-        <li><a href="#hostname-section"><span class="secno">2.4.4</span> <span class="content"><span>Hostname</span></span></a>
-        <li><a href="#serial-number-section"><span class="secno">2.4.5</span> <span class="content"><span>Serial Number</span></span></a>
+        <li><a href="#annotated-asset-id-section"><span class="secno">2.5.1</span> <span class="content"><span>Annotated Asset ID</span></span></a>
+        <li><a href="#annotated-location-section"><span class="secno">2.5.2</span> <span class="content"><span>Annotated Location</span></span></a>
+        <li><a href="#directory-id-section"><span class="secno">2.5.3</span> <span class="content"><span>Directory ID</span></span></a>
+        <li><a href="#hostname-section"><span class="secno">2.5.4</span> <span class="content"><span>Hostname</span></span></a>
+        <li><a href="#serial-number-section"><span class="secno">2.5.5</span> <span class="content"><span>Serial Number</span></span></a>
        </ol>
      </ol>
     <li>
@@ -786,19 +794,22 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <h3 class="heading settled" data-level="2.2" id="managed-web-applications"><span class="secno">2.2. </span><span class="content">Managed web applications</span><a class="self-link" href="#managed-web-applications"></a></h3>
    <p>The API is presumed to be used by web applications, which are understood and managed by the <a data-link-type="dfn" href="#device-administrator" id="ref-for-device-administrator③">device administrators</a>.</p>
    <h3 class="heading settled" data-level="2.3" id="permission-control"><span class="secno">2.3. </span><span class="content">Permission control</span><a class="self-link" href="#permission-control"></a></h3>
+   <p>The Device Attributes API is a <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-powerful-feature" id="ref-for-dfn-powerful-feature">powerful feature</a> identified by the <a data-link-type="dfn" href="https://w3c.github.io/permissions/#dfn-name" id="ref-for-dfn-name">name</a> <dfn class="permission dfn-paneled" data-dfn-type="dfn" data-noexport id="device-attributes">"device-attributes"</dfn>.</p>
    <p>Most operating systems have a mechanism for the deployment of policies which can be used to configure many aspects of a device’s operating system or applications such as the web browser. This specification requires that permission to access these device attributes is configured through such a system. These policies are controlled by <a data-link-type="dfn" href="#device-administrator" id="ref-for-device-administrator④">device administrators</a>. They may not necessarily have the device user’s best interests.</p>
    <p>Taking Chrome browser as an example, the status of managed web application is given to the origins which correspond to web applications selected by <a data-link-type="dfn" href="#device-administrator" id="ref-for-device-administrator⑤">device administrators</a> in the <a href="https://support.google.com/a/topic/2413312">Google Admin Console</a> and are automatically installed on the enterprise managed devices. For a managed web applications, permission to access these device attributes can be revoked if the <a data-link-type="dfn" href="#device-administrator" id="ref-for-device-administrator⑥">device administrator</a> doesn’t want to provide a specific application access.</p>
-   <h3 class="heading settled" data-level="2.4" id="device-attributes"><span class="secno">2.4. </span><span class="content">Device attributes</span><a class="self-link" href="#device-attributes"></a></h3>
+   <h3 class="heading settled" data-level="2.4" id="permissions-policy"><span class="secno">2.4. </span><span class="content">Permissions policy</span><a class="self-link" href="#permissions-policy"></a></h3>
+   <p>This specification defines a <a data-link-type="dfn" href="https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature" id="ref-for-policy-controlled-feature">policy-controlled feature</a> identified by the token string <a data-link-type="dfn" href="#device-attributes" id="ref-for-device-attributes">"device-attributes"</a>.</p>
+   <h3 class="heading settled" data-level="2.5" id="device-attributes-section"><span class="secno">2.5. </span><span class="content">Device attributes</span><a class="self-link" href="#device-attributes-section"></a></h3>
    <p>The API is presumed to be used with a management infrastructure which allows <a data-link-type="dfn" href="#device-administrator" id="ref-for-device-administrator⑦">device administrators</a> to manage a fleet of devices and configure properties for those devices.</p>
-   <h4 class="heading settled" data-level="2.4.1" id="annotated-asset-id-section"><span class="secno">2.4.1. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="annotated-asset-id">Annotated Asset ID</dfn></span><a class="self-link" href="#annotated-asset-id-section"></a></h4>
+   <h4 class="heading settled" data-level="2.5.1" id="annotated-asset-id-section"><span class="secno">2.5.1. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="annotated-asset-id">Annotated Asset ID</dfn></span><a class="self-link" href="#annotated-asset-id-section"></a></h4>
    <p>An administrator-defined value which uniquely identifies a device within an organization.</p>
-   <h4 class="heading settled" data-level="2.4.2" id="annotated-location-section"><span class="secno">2.4.2. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="annotated-location">Annotated Location</dfn></span><a class="self-link" href="#annotated-location-section"></a></h4>
+   <h4 class="heading settled" data-level="2.5.2" id="annotated-location-section"><span class="secno">2.5.2. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="annotated-location">Annotated Location</dfn></span><a class="self-link" href="#annotated-location-section"></a></h4>
    <p>An administrator-defined value which uniquely identifies a location within an organization.</p>
-   <h4 class="heading settled" data-level="2.4.3" id="directory-id-section"><span class="secno">2.4.3. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="directory-id">Directory ID</dfn></span><a class="self-link" href="#directory-id-section"></a></h4>
+   <h4 class="heading settled" data-level="2.5.3" id="directory-id-section"><span class="secno">2.5.3. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="directory-id">Directory ID</dfn></span><a class="self-link" href="#directory-id-section"></a></h4>
    <p>An inventory management system-defined value which uniquely identifies a device within an organization.</p>
-   <h4 class="heading settled" data-level="2.4.4" id="hostname-section"><span class="secno">2.4.4. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="hostname">Hostname</dfn></span><a class="self-link" href="#hostname-section"></a></h4>
+   <h4 class="heading settled" data-level="2.5.4" id="hostname-section"><span class="secno">2.5.4. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="hostname">Hostname</dfn></span><a class="self-link" href="#hostname-section"></a></h4>
    <p>An administrator-defined value which is used as the device hostname during DHCP requests.</p>
-   <h4 class="heading settled" data-level="2.4.5" id="serial-number-section"><span class="secno">2.4.5. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="serial-number">Serial Number</dfn></span><a class="self-link" href="#serial-number-section"></a></h4>
+   <h4 class="heading settled" data-level="2.5.5" id="serial-number-section"><span class="secno">2.5.5. </span><span class="content"><dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="serial-number">Serial Number</dfn></span><a class="self-link" href="#serial-number-section"></a></h4>
    <p>A manufacturer-defined value which uniquely identifies a device among those produced by that manufacturer.</p>
    <h2 class="heading settled" data-level="3" id="navigatormanageddata-interface"><span class="secno">3. </span><span class="content"><code class="idl"><a data-link-type="idl" href="#navigatormanageddata" id="ref-for-navigatormanageddata">NavigatorManagedData</a></code> interface</span><a class="self-link" href="#navigatormanageddata-interface"></a></h2>
 <pre class="idl highlight def">[
@@ -908,7 +919,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>Assuming there is a retail enterprise that relies on an online sales system. The backend service pushes different tariffs to the in-store devices based on their annotated location (country, city or sales region) in the morning, and collects sales reports in the afternoon.</p>
    <p>With the help of Device Attributes API, this sales application can get the device location by using <code class="idl"><a data-link-type="idl" href="#dom-navigatormanageddata-getannotatedlocation" id="ref-for-dom-navigatormanageddata-getannotatedlocation②">getAnnotatedLocation()</a></code> method. The operation will fail if the API call is triggered by a phishing application - looks similar but not the expected one.</p>
    <div class="example" id="example-03009e65">
-    <a class="self-link" href="#example-03009e65"></a> 
+    <a class="self-link" href="#example-03009e65"></a>
+
+
 <pre class="lang-js highlight"><c- c1>// Request sensitive data if the current environment is valid.</c->
 <c- a>function</c-> successCallback<c- p>(</c->location<c- p>)</c-> <c- p>{</c->
   <c- a>const</c-> tariff <c- o>=</c-> backend<c- p>.</c->requestTariff<c- p>(</c->location<c- p>);</c->
@@ -930,7 +943,9 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <p>It is easy to write another similar code snippet to report the sales data including a device serial number by using <code class="idl"><a data-link-type="idl" href="#dom-navigatormanageddata-getannotatedassetid" id="ref-for-dom-navigatormanageddata-getannotatedassetid②">getAnnotatedAssetId()</a></code> method.</p>
    <p class="note" role="note"><span class="marker">NOTE:</span> The website should assume that the data could be tampered with, stolen or reused on another managed device. Alternative security measures should be put in place by the website itself.</p>
    <div class="example" id="example-b77015ca">
-    <a class="self-link" href="#example-b77015ca"></a>   
+    <a class="self-link" href="#example-b77015ca"></a>
+ 
+
 <pre class="lang-js highlight"><c- a>function</c-> ReportSalesData<c- p>()</c-> <c- p>{</c->
   navigator<c- p>.</c->managed<c- p>.</c->getAnnotatedAssetId<c- p>.</c->then<c- p>(</c->reportCallback<c- p>);</c->
 <c- p>}</c->
@@ -954,40 +969,51 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
     in the normative parts of this document
     are to be interpreted as described in RFC 2119.
     However, for readability,
-    these words do not appear in all uppercase letters in this specification. </p>
+    these words do not appear in all uppercase letters in this specification.
+
+    </p>
    <p>All of the text of this specification is normative
-    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a> </p>
+    except sections explicitly marked as non-normative, examples, and notes. <a data-link-type="biblio" href="#biblio-rfc2119" title="Key words for use in RFCs to Indicate Requirement Levels">[RFC2119]</a>
+
+    </p>
    <p>Examples in this specification are introduced with the words “for example”
     or are set apart from the normative text
     with <code>class="example"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <div class="example" id="w3c-example">
-    <a class="self-link" href="#w3c-example"></a> 
-    <p>This is an example of an informative example. </p>
+    <a class="self-link" href="#w3c-example"></a>
+        
+    <p>This is an example of an informative example.
+    </p>
    </div>
    <p>Informative notes begin with the word “Note”
     and are set apart from the normative text
     with <code>class="note"</code>,
-    like this: </p>
+    like this:
+
+    </p>
    <p class="note" role="note">Note, this is an informative note.</p>
   </div>
   <script src="https://www.w3.org/scripts/TR/2021/fixup.js"></script>
   <h2 class="no-num no-ref heading settled" id="index"><span class="content">Index</span><a class="self-link" href="#index"></a></h2>
   <h3 class="no-num no-ref heading settled" id="index-defined-here"><span class="content">Terms defined by this specification</span><a class="self-link" href="#index-defined-here"></a></h3>
   <ul class="index">
-   <li><a href="#annotated-asset-id">Annotated Asset ID</a><span>, in § 2.4.1</span>
-   <li><a href="#annotated-location">Annotated Location</a><span>, in § 2.4.2</span>
+   <li><a href="#annotated-asset-id">Annotated Asset ID</a><span>, in § 2.5.1</span>
+   <li><a href="#annotated-location">Annotated Location</a><span>, in § 2.5.2</span>
    <li><a href="#device-administrator">device administrator</a><span>, in § 2.1</span>
-   <li><a href="#directory-id">Directory ID</a><span>, in § 2.4.3</span>
+   <li><a href="#device-attributes">"device-attributes"</a><span>, in § 2.3</span>
+   <li><a href="#directory-id">Directory ID</a><span>, in § 2.5.3</span>
    <li><a href="#dom-navigatormanageddata-getannotatedassetid">getAnnotatedAssetId()</a><span>, in § 3.1</span>
    <li><a href="#dom-navigatormanageddata-getannotatedlocation">getAnnotatedLocation()</a><span>, in § 3.2</span>
    <li><a href="#dom-navigatormanageddata-getdirectoryid">getDirectoryId()</a><span>, in § 3.3</span>
    <li><a href="#dom-navigatormanageddata-gethostname">getHostname()</a><span>, in § 3.4</span>
    <li><a href="#dom-navigatormanageddata-getserialnumber">getSerialNumber()</a><span>, in § 3.5</span>
-   <li><a href="#hostname">Hostname</a><span>, in § 2.4.4</span>
+   <li><a href="#hostname">Hostname</a><span>, in § 2.5.4</span>
    <li><a href="#managed-data-task-source">managed data task source</a><span>, in § 3</span>
    <li><a href="#navigatormanageddata">NavigatorManagedData</a><span>, in § 3</span>
-   <li><a href="#serial-number">Serial Number</a><span>, in § 2.4.5</span>
+   <li><a href="#serial-number">Serial Number</a><span>, in § 2.5.5</span>
   </ul>
   <h3 class="no-num no-ref heading settled" id="index-defined-elsewhere"><span class="content">Terms defined by reference</span><a class="self-link" href="#index-defined-elsewhere"></a></h3>
   <ul class="index">
@@ -1003,6 +1029,17 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
      <li><span class="dfn-paneled" id="48438eb3">queue a global task</span>
      <li><span class="dfn-paneled" id="e99bd18e">relevant global object</span>
      <li><span class="dfn-paneled" id="65181da8">secure context</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[PERMISSIONS]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="e740d7e5">name</span>
+     <li><span class="dfn-paneled" id="6c2d7879">powerful feature</span>
+    </ul>
+   <li>
+    <a data-link-type="biblio">[PERMISSIONS-POLICY-1]</a> defines the following terms:
+    <ul>
+     <li><span class="dfn-paneled" id="cc890cc1">policy-controlled feature</span>
     </ul>
    <li>
     <a data-link-type="biblio">[WEBIDL]</a> defines the following terms:
@@ -1027,6 +1064,10 @@ A human-readable <a href="http://www.w3.org/community/about/agreements/cla-deed/
    <dd>Anne van Kesteren. <a href="https://dom.spec.whatwg.org/"><cite>DOM Standard</cite></a>. Living Standard. URL: <a href="https://dom.spec.whatwg.org/">https://dom.spec.whatwg.org/</a>
    <dt id="biblio-html">[HTML]
    <dd>Anne van Kesteren; et al. <a href="https://html.spec.whatwg.org/multipage/"><cite>HTML Standard</cite></a>. Living Standard. URL: <a href="https://html.spec.whatwg.org/multipage/">https://html.spec.whatwg.org/multipage/</a>
+   <dt id="biblio-permissions">[PERMISSIONS]
+   <dd>Marcos Caceres; Mike Taylor. <a href="https://w3c.github.io/permissions/"><cite>Permissions</cite></a>. URL: <a href="https://w3c.github.io/permissions/">https://w3c.github.io/permissions/</a>
+   <dt id="biblio-permissions-policy-1">[PERMISSIONS-POLICY-1]
+   <dd>Ian Clelland. <a href="https://w3c.github.io/webappsec-permissions-policy/"><cite>Permissions Policy</cite></a>. URL: <a href="https://w3c.github.io/webappsec-permissions-policy/">https://w3c.github.io/webappsec-permissions-policy/</a>
    <dt id="biblio-rfc2119">[RFC2119]
    <dd>S. Bradner. <a href="https://datatracker.ietf.org/doc/html/rfc2119"><cite>Key words for use in RFCs to Indicate Requirement Levels</cite></a>. March 1997. Best Current Practice. URL: <a href="https://datatracker.ietf.org/doc/html/rfc2119">https://datatracker.ietf.org/doc/html/rfc2119</a>
    <dt id="biblio-webidl">[WEBIDL]
@@ -1259,6 +1300,7 @@ let dfnPanelData = {
 "48438eb3": {"dfnID":"48438eb3","dfnText":"queue a global task","external":true,"refSections":[{"refs":[{"id":"ref-for-queue-a-global-task"},{"id":"ref-for-queue-a-global-task\u2460"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-queue-a-global-task\u2461"},{"id":"ref-for-queue-a-global-task\u2462"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-queue-a-global-task\u2463"},{"id":"ref-for-queue-a-global-task\u2464"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-queue-a-global-task\u2465"},{"id":"ref-for-queue-a-global-task\u2466"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-queue-a-global-task\u2467"},{"id":"ref-for-queue-a-global-task\u2468"}],"title":"3.5. getSerialNumber() method"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task"},
 "5f90bbfb": {"dfnID":"5f90bbfb","dfnText":"undefined","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-undefined"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-idl-undefined\u2460"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-idl-undefined\u2461"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-idl-undefined\u2462"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-idl-undefined\u2463"}],"title":"3.5. getSerialNumber() method"}],"url":"https://webidl.spec.whatwg.org/#idl-undefined"},
 "65181da8": {"dfnID":"65181da8","dfnText":"secure context","external":true,"refSections":[{"refs":[{"id":"ref-for-secure-context"}],"title":"5. Security considerations"},{"refs":[{"id":"ref-for-secure-context\u2460"}],"title":"6. Privacy considerations"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#secure-context"},
+"6c2d7879": {"dfnID":"6c2d7879","dfnText":"powerful feature","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-powerful-feature"}],"title":"2.3. Permission control"}],"url":"https://w3c.github.io/permissions/#dfn-powerful-feature"},
 "8855a9aa": {"dfnID":"8855a9aa","dfnText":"DOMString","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMString"},{"id":"ref-for-idl-DOMString\u2460"},{"id":"ref-for-idl-DOMString\u2461"},{"id":"ref-for-idl-DOMString\u2462"},{"id":"ref-for-idl-DOMString\u2463"}],"title":"3. NavigatorManagedData interface"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMString"},
 "889e932f": {"dfnID":"889e932f","dfnText":"Exposed","external":true,"refSections":[{"refs":[{"id":"ref-for-Exposed"}],"title":"3. NavigatorManagedData interface"}],"url":"https://webidl.spec.whatwg.org/#Exposed"},
 "a72449dd": {"dfnID":"a72449dd","dfnText":"in parallel","external":true,"refSections":[{"refs":[{"id":"ref-for-in-parallel"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-in-parallel\u2460"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-in-parallel\u2461"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-in-parallel\u2462"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-in-parallel\u2463"}],"title":"3.5. getSerialNumber() method"}],"url":"https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel"},
@@ -1268,15 +1310,18 @@ let dfnPanelData = {
 "b75bb3bd": {"dfnID":"b75bb3bd","dfnText":"SecureContext","external":true,"refSections":[{"refs":[{"id":"ref-for-SecureContext"}],"title":"3. NavigatorManagedData interface"}],"url":"https://webidl.spec.whatwg.org/#SecureContext"},
 "ba556545": {"dfnID":"ba556545","dfnText":"NotAllowedError","external":true,"refSections":[{"refs":[{"id":"ref-for-notallowederror"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-notallowederror\u2460"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-notallowederror\u2461"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-notallowederror\u2462"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-notallowederror\u2463"}],"title":"3.5. getSerialNumber() method"}],"url":"https://webidl.spec.whatwg.org/#notallowederror"},
 "bdbd19d1": {"dfnID":"bdbd19d1","dfnText":"Promise","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-promise"},{"id":"ref-for-idl-promise\u2460"},{"id":"ref-for-idl-promise\u2461"},{"id":"ref-for-idl-promise\u2462"},{"id":"ref-for-idl-promise\u2463"}],"title":"3. NavigatorManagedData interface"}],"url":"https://webidl.spec.whatwg.org/#idl-promise"},
+"cc890cc1": {"dfnID":"cc890cc1","dfnText":"policy-controlled feature","external":true,"refSections":[{"refs":[{"id":"ref-for-policy-controlled-feature"}],"title":"2.4. Permissions policy"}],"url":"https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature"},
 "dacde8b5": {"dfnID":"dacde8b5","dfnText":"a new promise","external":true,"refSections":[{"refs":[{"id":"ref-for-a-new-promise"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-a-new-promise\u2460"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-a-new-promise\u2461"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-a-new-promise\u2462"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-a-new-promise\u2463"}],"title":"3.5. getSerialNumber() method"}],"url":"https://webidl.spec.whatwg.org/#a-new-promise"},
 "dca2de17": {"dfnID":"dca2de17","dfnText":"DOMException","external":true,"refSections":[{"refs":[{"id":"ref-for-idl-DOMException"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-idl-DOMException\u2460"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-idl-DOMException\u2461"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-idl-DOMException\u2462"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-idl-DOMException\u2463"}],"title":"3.5. getSerialNumber() method"}],"url":"https://webidl.spec.whatwg.org/#idl-DOMException"},
-"device-administrator": {"dfnID":"device-administrator","dfnText":"device administrator","external":false,"refSections":[{"refs":[{"id":"ref-for-device-administrator"},{"id":"ref-for-device-administrator\u2460"}],"title":"1. Introduction"},{"refs":[{"id":"ref-for-device-administrator\u2461"}],"title":"2.1. Managed devices"},{"refs":[{"id":"ref-for-device-administrator\u2462"}],"title":"2.2. Managed web applications"},{"refs":[{"id":"ref-for-device-administrator\u2463"},{"id":"ref-for-device-administrator\u2464"},{"id":"ref-for-device-administrator\u2465"}],"title":"2.3. Permission control"},{"refs":[{"id":"ref-for-device-administrator\u2466"}],"title":"2.4. Device attributes"},{"refs":[{"id":"ref-for-device-administrator\u2467"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-device-administrator\u2468"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-device-administrator\u2460\u24ea"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-device-administrator\u2460\u2460"}],"title":"5. Security considerations"},{"refs":[{"id":"ref-for-device-administrator\u2460\u2461"},{"id":"ref-for-device-administrator\u2460\u2462"},{"id":"ref-for-device-administrator\u2460\u2463"}],"title":"6. Privacy considerations"}],"url":"#device-administrator"},
+"device-administrator": {"dfnID":"device-administrator","dfnText":"device administrator","external":false,"refSections":[{"refs":[{"id":"ref-for-device-administrator"},{"id":"ref-for-device-administrator\u2460"}],"title":"1. Introduction"},{"refs":[{"id":"ref-for-device-administrator\u2461"}],"title":"2.1. Managed devices"},{"refs":[{"id":"ref-for-device-administrator\u2462"}],"title":"2.2. Managed web applications"},{"refs":[{"id":"ref-for-device-administrator\u2463"},{"id":"ref-for-device-administrator\u2464"},{"id":"ref-for-device-administrator\u2465"}],"title":"2.3. Permission control"},{"refs":[{"id":"ref-for-device-administrator\u2466"}],"title":"2.5. Device attributes"},{"refs":[{"id":"ref-for-device-administrator\u2467"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-device-administrator\u2468"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-device-administrator\u2460\u24ea"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-device-administrator\u2460\u2460"}],"title":"5. Security considerations"},{"refs":[{"id":"ref-for-device-administrator\u2460\u2461"},{"id":"ref-for-device-administrator\u2460\u2462"},{"id":"ref-for-device-administrator\u2460\u2463"}],"title":"6. Privacy considerations"}],"url":"#device-administrator"},
+"device-attributes": {"dfnID":"device-attributes","dfnText":"\"device-attributes\"","external":false,"refSections":[{"refs":[{"id":"ref-for-device-attributes"}],"title":"2.4. Permissions policy"}],"url":"#device-attributes"},
 "directory-id": {"dfnID":"directory-id","dfnText":"Directory ID","external":false,"refSections":[{"refs":[{"id":"ref-for-directory-id"}],"title":"3.3. getDirectoryId() method"}],"url":"#directory-id"},
 "dom-navigatormanageddata-getannotatedassetid": {"dfnID":"dom-navigatormanageddata-getannotatedassetid","dfnText":"getAnnotatedAssetId()","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-navigatormanageddata-getannotatedassetid"}],"title":"3. NavigatorManagedData interface"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-getannotatedassetid\u2460"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-getannotatedassetid\u2461"}],"title":"4. Code example"}],"url":"#dom-navigatormanageddata-getannotatedassetid"},
 "dom-navigatormanageddata-getannotatedlocation": {"dfnID":"dom-navigatormanageddata-getannotatedlocation","dfnText":"getAnnotatedLocation()","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-navigatormanageddata-getannotatedlocation"}],"title":"3. NavigatorManagedData interface"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-getannotatedlocation\u2460"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-getannotatedlocation\u2461"}],"title":"4. Code example"}],"url":"#dom-navigatormanageddata-getannotatedlocation"},
 "dom-navigatormanageddata-getdirectoryid": {"dfnID":"dom-navigatormanageddata-getdirectoryid","dfnText":"getDirectoryId()","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-navigatormanageddata-getdirectoryid"}],"title":"3. NavigatorManagedData interface"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-getdirectoryid\u2460"}],"title":"3.3. getDirectoryId() method"}],"url":"#dom-navigatormanageddata-getdirectoryid"},
 "dom-navigatormanageddata-gethostname": {"dfnID":"dom-navigatormanageddata-gethostname","dfnText":"getHostname()","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-navigatormanageddata-gethostname"}],"title":"3. NavigatorManagedData interface"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-gethostname\u2460"}],"title":"3.4. getHostname() method"}],"url":"#dom-navigatormanageddata-gethostname"},
 "dom-navigatormanageddata-getserialnumber": {"dfnID":"dom-navigatormanageddata-getserialnumber","dfnText":"getSerialNumber()","external":false,"refSections":[{"refs":[{"id":"ref-for-dom-navigatormanageddata-getserialnumber"}],"title":"3. NavigatorManagedData interface"},{"refs":[{"id":"ref-for-dom-navigatormanageddata-getserialnumber\u2460"}],"title":"3.5. getSerialNumber() method"}],"url":"#dom-navigatormanageddata-getserialnumber"},
+"e740d7e5": {"dfnID":"e740d7e5","dfnText":"name","external":true,"refSections":[{"refs":[{"id":"ref-for-dfn-name"}],"title":"2.3. Permission control"}],"url":"https://w3c.github.io/permissions/#dfn-name"},
 "e99bd18e": {"dfnID":"e99bd18e","dfnText":"relevant global object","external":true,"refSections":[{"refs":[{"id":"ref-for-concept-relevant-global"},{"id":"ref-for-concept-relevant-global\u2460"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-concept-relevant-global\u2461"},{"id":"ref-for-concept-relevant-global\u2462"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-concept-relevant-global\u2463"},{"id":"ref-for-concept-relevant-global\u2464"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-concept-relevant-global\u2465"},{"id":"ref-for-concept-relevant-global\u2466"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-concept-relevant-global\u2467"},{"id":"ref-for-concept-relevant-global\u2468"}],"title":"3.5. getSerialNumber() method"}],"url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global"},
 "hostname": {"dfnID":"hostname","dfnText":"Hostname","external":false,"refSections":[{"refs":[{"id":"ref-for-hostname"}],"title":"3.4. getHostname() method"}],"url":"#hostname"},
 "managed-data-task-source": {"dfnID":"managed-data-task-source","dfnText":"managed data task source","external":false,"refSections":[{"refs":[{"id":"ref-for-managed-data-task-source"},{"id":"ref-for-managed-data-task-source\u2460"}],"title":"3.1. getAnnotatedAssetId() method"},{"refs":[{"id":"ref-for-managed-data-task-source\u2461"},{"id":"ref-for-managed-data-task-source\u2462"}],"title":"3.2. getAnnotatedLocation() method"},{"refs":[{"id":"ref-for-managed-data-task-source\u2463"},{"id":"ref-for-managed-data-task-source\u2464"}],"title":"3.3. getDirectoryId() method"},{"refs":[{"id":"ref-for-managed-data-task-source\u2465"},{"id":"ref-for-managed-data-task-source\u2466"}],"title":"3.4. getHostname() method"},{"refs":[{"id":"ref-for-managed-data-task-source\u2467"},{"id":"ref-for-managed-data-task-source\u2468"}],"title":"3.5. getSerialNumber() method"}],"url":"#managed-data-task-source"},
@@ -1673,6 +1718,7 @@ let refsData = {
 "#annotated-asset-id": {"displayText":"annotated asset id","export":true,"for_":[],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"annotated asset id","type":"dfn","url":"#annotated-asset-id"},
 "#annotated-location": {"displayText":"annotated location","export":true,"for_":[],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"annotated location","type":"dfn","url":"#annotated-location"},
 "#device-administrator": {"displayText":"device administrator","export":true,"for_":[],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"device administrator","type":"dfn","url":"#device-administrator"},
+"#device-attributes": {"displayText":"\"device-attributes\"","export":true,"for_":[],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"\"device-attributes\"","type":"dfn","url":"#device-attributes"},
 "#directory-id": {"displayText":"directory id","export":true,"for_":[],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"directory id","type":"dfn","url":"#directory-id"},
 "#dom-navigatormanageddata-getannotatedassetid": {"displayText":"getAnnotatedAssetId()","export":true,"for_":["NavigatorManagedData"],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"getAnnotatedAssetId()","type":"method","url":"#dom-navigatormanageddata-getannotatedassetid"},
 "#dom-navigatormanageddata-getannotatedlocation": {"displayText":"getAnnotatedLocation()","export":true,"for_":["NavigatorManagedData"],"level":"1","normative":true,"shortname":"device-attributes","spec":"device-attributes-1","status":"local","text":"getAnnotatedLocation()","type":"method","url":"#dom-navigatormanageddata-getannotatedlocation"},
@@ -1688,6 +1734,9 @@ let refsData = {
 "https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global": {"displayText":"relevant global object","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"relevant global object","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#concept-relevant-global"},
 "https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task": {"displayText":"queue a global task","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"queue a global task","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#queue-a-global-task"},
 "https://html.spec.whatwg.org/multipage/webappapis.html#secure-context": {"displayText":"secure context","export":true,"for_":[],"level":"1","normative":true,"shortname":"html","spec":"html","status":"current","text":"secure context","type":"dfn","url":"https://html.spec.whatwg.org/multipage/webappapis.html#secure-context"},
+"https://w3c.github.io/permissions/#dfn-name": {"displayText":"name","export":true,"for_":["powerful feature"],"level":"1","normative":true,"shortname":"permissions","spec":"permissions","status":"current","text":"name","type":"dfn","url":"https://w3c.github.io/permissions/#dfn-name"},
+"https://w3c.github.io/permissions/#dfn-powerful-feature": {"displayText":"powerful feature","export":true,"for_":[],"level":"1","normative":true,"shortname":"permissions","spec":"permissions","status":"current","text":"powerful feature","type":"dfn","url":"https://w3c.github.io/permissions/#dfn-powerful-feature"},
+"https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature": {"displayText":"policy-controlled feature","export":true,"for_":[],"level":"1","normative":true,"shortname":"permissions-policy","spec":"permissions-policy-1","status":"current","text":"policy-controlled feature","type":"dfn","url":"https://w3c.github.io/webappsec-permissions-policy/#policy-controlled-feature"},
 "https://webidl.spec.whatwg.org/#Exposed": {"displayText":"Exposed","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"Exposed","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#Exposed"},
 "https://webidl.spec.whatwg.org/#SecureContext": {"displayText":"SecureContext","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"SecureContext","type":"extended-attribute","url":"https://webidl.spec.whatwg.org/#SecureContext"},
 "https://webidl.spec.whatwg.org/#a-new-promise": {"displayText":"a new promise","export":true,"for_":[],"level":"1","normative":true,"shortname":"webidl","spec":"webidl","status":"current","text":"a new promise","type":"dfn","url":"https://webidl.spec.whatwg.org/#a-new-promise"},
