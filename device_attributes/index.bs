@@ -38,11 +38,17 @@ The API is presumed to be used by web applications, which are understood and man
 
 ## Permission control ## {#permission-control}
 
+The Device Attributes API is a [=powerful feature=] identified by the [=powerful feature/name=] <dfn class="permission">"device-attributes"</dfn>.
+
 Most operating systems have a mechanism for the deployment of policies which can be used to configure many aspects of a device's operating system or applications such as the web browser. This specification requires that permission to access these device attributes is configured through such a system. These policies are controlled by [=device administrators=]. They may not necessarily have the device user's best interests.
 
 Taking Chrome browser as an example, the status of managed web application is given to the origins which correspond to web applications selected by [=device administrators=] in the <a href="https://support.google.com/a/topic/2413312">Google Admin Console</a> and are automatically installed on the enterprise managed devices. For a managed web applications, permission to access these device attributes can be revoked if the [=device administrator=] doesn’t want to provide a specific application access.
 
-## Device attributes ## {#device-attributes}
+## Permissions policy ## {#permissions-policy}
+
+This specification defines a [=policy-controlled feature=] identified by the token string <a>"device-attributes"</a>.
+
+## Device attributes ## {#device-attributes-section}
  
 The API is presumed to be used with a management infrastructure which allows [=device administrators=] to manage a fleet of devices and configure properties for those devices.
  
